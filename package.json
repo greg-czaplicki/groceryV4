@@ -1,0 +1,17 @@
+{
+  "name": "groceryV4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-promise-router": "^3.0.3",
+    "helmet": "^3.16.0",
+    "joi": "^14.3.1",
+    "mongoose": "^5.4.20",
+    "morgan": "^1.9.1"
+  }
+}
