@@ -3,6 +3,9 @@ const logger = require("morgan");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
 
+const itemsRouter = require("./routes/items");
+const categoriesRouter = require("./routes/categories");
+
 const serverConfig = require("../config/config");
 
 mongoose.connect(serverConfig.mongoURL, { useNewUrlParser: true });
@@ -14,9 +17,21 @@ app.use(helmet());
 app.use(logger("dev"));
 app.use(express.json());
 
-// Routers
-app.get("/", (req, res, next) => {
-  res.status(200).json({ message: "Sanity Check!" });
+// Routes
+app.use("/items", itemsRouter);
+app.use("/categories", categoriesRouter);
+
+// Error handler
+app.use((err, req, res, next) => {
+  const error = app.get("env") === "development" ? err : {};
+  const status = error.status || 500;
+
+  res.status(status).json({
+    error: {
+      message: error.message
+    }
+  });
+  console.error(err);
 });
 
 // Start server
