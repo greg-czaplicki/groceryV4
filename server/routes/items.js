@@ -1,18 +1,22 @@
 const router = require("express-promise-router")();
 
 const ItemsController = require("../controllers/items");
-const { validateId, schemas } = require("../middleware/routeHelpers");
+const {
+  validateId,
+  validateBody,
+  schemas
+} = require("../middleware/routeHelpers");
 
 router
   .route("/")
   .get(ItemsController.index)
-  .post(ItemsController.newItem);
+  .post(validateBody(schemas.itemSchema), ItemsController.newItem);
 
 router.use("/:id", validateId(schemas.idSchema));
 router
   .route("/:id")
   .get(ItemsController.getItem)
-  .patch(ItemsController.patchItem)
+  .patch(validateBody(schemas.itemSchema), ItemsController.patchItem)
   .delete(ItemsController.deleteItem);
 
 module.exports = router;

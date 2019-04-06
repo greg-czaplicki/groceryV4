@@ -10,11 +10,6 @@ module.exports = {
           message: result.error.message
         });
 
-      if (!req.value) {
-        req.value = {};
-      }
-
-      req.value.params = result.value;
       next();
     };
   },
@@ -28,11 +23,6 @@ module.exports = {
         });
       }
 
-      if (!req.value) {
-        req.value = {};
-      }
-
-      req.value.body = result.value;
       next();
     };
   },
@@ -47,6 +37,12 @@ module.exports = {
       name: Joi.string()
         .regex(/^[A-Za-z]+$/)
         .required()
+    }),
+    itemSchema: Joi.object().keys({
+      name: Joi.string().regex(/^[0-9A-Za-z \s \/ \.]+$/),
+      category: Joi.string(),
+      quantity: Joi.number(),
+      isComplete: Joi.boolean()
     })
   }
 };

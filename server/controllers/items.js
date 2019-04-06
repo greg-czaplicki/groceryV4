@@ -13,13 +13,13 @@ module.exports = {
   },
 
   getItem: async (req, res, next) => {
-    const { id } = req.value.params;
+    const { id } = req.params;
     const result = await Item.findById(id);
     res.status(200).json(result);
   },
 
   patchItem: async (req, res, next) => {
-    const { id } = req.value.params;
+    const { id } = req.params;
     const patchItem = req.body;
 
     const result = await Item.findByIdAndUpdate(id, patchItem, { new: true });
@@ -27,7 +27,7 @@ module.exports = {
   },
 
   deleteItem: async (req, res, next) => {
-    const { id } = req.value.params;
+    const { id } = req.params;
     const result = await Item.findByIdAndDelete(id);
     res.status(200).json(`${result.name} was successfully deleted.`);
   }
