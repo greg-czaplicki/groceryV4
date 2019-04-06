@@ -13,13 +13,13 @@ module.exports = {
   },
 
   getCategory: async (req, res, next) => {
-    const { id } = req.params;
+    const { id } = req.value.params;
     const category = await Category.findById(id);
     res.status(200).json(category);
   },
 
   updateCategory: async (req, res, next) => {
-    const { id } = req.params;
+    const { id } = req.value.params;
     const newCategory = req.body;
     const result = await Category.findByIdAndUpdate(id, newCategory, {
       new: true
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   deleteCategory: async (req, res, next) => {
-    const { id } = req.params;
+    const { id } = req.value.params;
     const result = await Category.findByIdAndDelete(id);
     res.status(200).json(`${result.name} category was successfully deleted.`);
   }
