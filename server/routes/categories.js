@@ -1,6 +1,6 @@
 const router = require("express-promise-router")();
 
-const CategoriesController = require("../controllers/categories");
+const categoriesController = require("../controllers/categories");
 const {
   validateId,
   validateBody,
@@ -9,17 +9,22 @@ const {
 
 router
   .route("/")
-  .get(CategoriesController.index)
-  .post(validateBody(schemas.categorySchema), CategoriesController.newCategory);
+  .get(categoriesController.index)
+  .post(validateBody(schemas.categorySchema), categoriesController.newCategory);
 
 router.use("/:id", validateId(schemas.idSchema));
 router
   .route("/:id")
-  .get(CategoriesController.getCategory)
+  .get(categoriesController.getCategory)
   .put(
     validateBody(schemas.categorySchema),
-    CategoriesController.updateCategory
+    categoriesController.updateCategory
   )
-  .delete(CategoriesController.deleteCategory);
+  .delete(categoriesController.deleteCategory);
+
+router
+  .route("/:id/items")
+  .get(categoriesController.getItems)
+  .post(categoriesController.addItem);
 
 module.exports = router;
