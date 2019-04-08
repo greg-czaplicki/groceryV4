@@ -1,18 +1,35 @@
-import React from "react";
-import axios from "axios";
+import React, { Component } from "react";
 
-const App = () => {
-  const items = () => {
-    axios
-      .get("http://localhost:3000/categories")
-      .then(res => console.log(res.data[0].name));
+import { getCategories } from "./api/categories";
+import Category from "./components/category";
+
+class App extends Component {
+  state = {
+    categories: []
   };
-  items();
-  return (
-    <div>
-      <h1>Grocery List V4</h1>
-    </div>
-  );
-};
+
+  async componentDidMount() {
+    const { data: categories } = await getCategories();
+    const result = categories.filter(category => category.items.length > 0);
+    this.setState({
+      categories: result
+    });
+  }
+
+  renderCategories = () => {
+    return this.state.categories.map(category => (
+      <Category key={category._id} category={category} />
+    ));
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>Grocery V4</h1>
+        {this.renderCategories()}
+      </div>
+    );
+  }
+}
 
 export default App;

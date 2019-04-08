@@ -3,7 +3,7 @@ const Item = require("../models/item");
 
 module.exports = {
   index: async (req, res, next) => {
-    const categories = await Category.find().select("name");
+    const categories = await Category.find().sort("name");
     res.status(200).json(categories);
   },
 
@@ -34,18 +34,15 @@ module.exports = {
     res.status(200).json(`${result.name} category was successfully deleted.`);
   },
 
-  getItems: async (req, res, next) => {
+  getCategoryItems: async (req, res, next) => {
     const { id } = req.params;
-    const result = await Category.findById(id).populate("items", "-category");
-    res.status(200).json(result);
-  },
-
-  addItem: async (req, res, next) => {
-    const newItem = new Item({ name: req.body.name, category: req.params.id });
-    const category = await Category.findById(req.params.id);
-    category.items.push(newItem);
-    await category.save();
-    const result = await newItem.save();
+    const result = await Category.findById(id).populate({
+      path: "items",
+      select: "-category",
+      options: {
+        sort: { name: 1 }
+      }
+    });
     res.status(200).json(result);
   }
 };

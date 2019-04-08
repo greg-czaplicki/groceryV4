@@ -7,6 +7,15 @@ module.exports = {
     res.status(200).json(items);
   },
 
+  addItem: async (req, res, next) => {
+    const newItem = new Item(req.body);
+    const category = await Category.findById(req.body.category);
+    category.items.push(newItem);
+    await category.save();
+    const result = await newItem.save();
+    res.status(200).json(result);
+  },
+
   getItem: async (req, res, next) => {
     const { id } = req.params;
     const result = await Item.findById(id);
@@ -24,6 +33,11 @@ module.exports = {
   deleteItem: async (req, res, next) => {
     const { id } = req.params;
     const result = await Item.findByIdAndDelete(id);
+    const category = await Category.findById(result.category);
+    category.items.pull(result);
+    await category.save();
     res.status(200).json(`${result.name} was successfully deleted.`);
   }
 };
+
+//TODO deleting an item does not remove it from the category subdocument

@@ -7,7 +7,10 @@ const {
   schemas
 } = require("../middleware/routeHelpers");
 
-router.route("/").get(itemsController.index);
+router
+  .route("/")
+  .get(itemsController.index)
+  .post(itemsController.addItem);
 
 router.use("/:id", validateId(schemas.idSchema));
 router

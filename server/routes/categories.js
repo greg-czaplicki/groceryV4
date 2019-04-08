@@ -22,9 +22,6 @@ router
   )
   .delete(categoriesController.deleteCategory);
 
-router
-  .route("/:id/items")
-  .get(categoriesController.getItems)
-  .post(categoriesController.addItem);
+router.route("/:id/items").get(categoriesController.getCategoryItems);
 
 module.exports = router;
