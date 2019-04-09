@@ -44,5 +44,18 @@ module.exports = {
       }
     });
     res.status(200).json(result);
+  },
+
+  getCategoryCompletedItems: async (req, res, next) => {
+    const { id } = req.params;
+    const result = await Category.findById(id).populate({
+      path: "items",
+      select: "-category",
+      match: { isComplete: true },
+      options: {
+        sort: { name: 1 }
+      }
+    });
+    res.status(200).json(result);
   }
 };

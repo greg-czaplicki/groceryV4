@@ -24,4 +24,8 @@ router
 
 router.route("/:id/items").get(categoriesController.getCategoryItems);
 
+router
+  .route("/:id/items/complete")
+  .get(categoriesController.getCategoryCompletedItems);
+
 module.exports = router;

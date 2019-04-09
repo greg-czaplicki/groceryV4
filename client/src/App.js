@@ -1,35 +1,43 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { getCategories } from "./api/categories";
-import Category from "./components/category";
+import { fetchCategories } from "./actions";
+import Category from "./components/Category";
+import AddItemForm from "./components/AddItemForm";
 
 class App extends Component {
-  state = {
-    categories: []
-  };
-
-  async componentDidMount() {
-    const { data: categories } = await getCategories();
-    const result = categories.filter(category => category.items.length > 0);
-    this.setState({
-      categories: result
-    });
+  componentDidMount() {
+    this.props.fetchCategories();
   }
 
   renderCategories = () => {
-    return this.state.categories.map(category => (
+    return this.props.categories.map(category => (
       <Category key={category._id} category={category} />
     ));
   };
+
+  // handleAddItem = async item => {
+  //   await addItem(item);
+  // };
 
   render() {
     return (
       <div>
         <h1>Grocery V4</h1>
+        <AddItemForm handleAddItem={this.handleAddItem} />
         {this.renderCategories()}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    categories: state.categories
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchCategories }
+)(App);

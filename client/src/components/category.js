@@ -1,22 +1,23 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { getCategoryItems } from "../api/categories";
-import Item from "./item";
+import { fetchItemsInCategory } from "../actions";
+
+import Item from "./Item";
 
 class Category extends Component {
-  state = {
-    items: []
-  };
-
-  async componentDidMount() {
-    const { data } = await getCategoryItems(this.props.category._id);
-    this.setState({
-      items: data.items
-    });
+  componentDidMount() {
+    this.props.fetchItemsInCategory(this.props.category._id);
   }
 
   renderItems = () => {
-    return this.state.items.map(item => <Item item={item} key={item._id} />);
+    const results = this.props.items.find(
+      item => item._id === this.props.category._id
+    );
+
+    if (!results) return <p>Loading...</p>;
+
+    return results.items.map(item => <Item item={item} key={item._id} />);
   };
 
   render() {
@@ -29,4 +30,13 @@ class Category extends Component {
   }
 }
 
-export default Category;
+const mapStateToProps = state => {
+  return {
+    items: state.itemsInCategory
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchItemsInCategory }
+)(Category);
