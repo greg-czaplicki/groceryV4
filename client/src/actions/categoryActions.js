@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from "./types";
+import { FETCH_CATEGORIES, ADD_ITEM } from "./types";
 import { getCategories } from "../api/categories";
 import { addItem } from "../api/items";
 
@@ -15,7 +15,7 @@ export const addNewItem = item => async dispatch => {
   const response = await addItem(item);
 
   dispatch({
-    type: "ADD_ITEM",
+    type: ADD_ITEM,
     payload: response.data
   });
 };
