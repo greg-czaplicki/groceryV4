@@ -1,11 +1,11 @@
-import { GET_CATEGORIES } from "./types";
+import { FETCH_CATEGORIES } from "./types";
 import { getCategories } from "../api/categories";
 
-export const getCategories = () => async dispatch => {
+export const getCategoryNames = () => async dispatch => {
   const response = await getCategories();
 
   dispatch({
-    type: GET_CATEGORIES,
+    type: FETCH_CATEGORIES,
     payload: response.data
   });
 };

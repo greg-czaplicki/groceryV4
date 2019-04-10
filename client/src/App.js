@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchCategories, addNewItem } from "./actions";
+import { getCategoryNames } from "./actions/categoryActions";
 import Category from "./components/Category";
 import AddItemForm from "./components/AddItemForm";
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchCategories();
+    this.props.getCategoryNames();
   }
 
   renderCategories = () => {
     return this.props.categories.map(category => (
-      <Category key={category._id} category={category} />
+      <Category key={category._id} name={category.name} />
     ));
   };
 
-  handleAddItem = item => {
-    this.props.addNewItem(item);
-  };
+  // handleAddItem = item => {
+  //   this.props.addNewItem(item);
+  // };
 
   render() {
     return (
@@ -39,5 +39,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchCategories, addNewItem }
+  { getCategoryNames }
 )(App);

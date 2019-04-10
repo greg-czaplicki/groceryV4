@@ -1,9 +1,9 @@
-import { GET_CATEGORIES } from "../actions/types";
+import { FETCH_CATEGORIES } from "../actions/types";
 
 const categoriesReducer = (state = [], action) => {
   switch (action.type) {
-    case GET_CATEGORIES:
-      return [...state, action.payload];
+    case FETCH_CATEGORIES:
+      return action.payload;
     default:
       return state;
   }
