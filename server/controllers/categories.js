@@ -3,7 +3,9 @@ const Item = require("../models/item");
 
 module.exports = {
   index: async (req, res, next) => {
-    const categories = await Category.find().sort("name");
+    const categories = await Category.find()
+      .sort("name")
+      .select("-items");
     res.status(200).json(categories);
   },
 

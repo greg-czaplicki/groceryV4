@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchCategories } from "./actions";
+import { fetchCategories, addNewItem } from "./actions";
 import Category from "./components/Category";
 import AddItemForm from "./components/AddItemForm";
 
@@ -16,9 +16,9 @@ class App extends Component {
     ));
   };
 
-  // handleAddItem = async item => {
-  //   await addItem(item);
-  // };
+  handleAddItem = item => {
+    this.props.addNewItem(item);
+  };
 
   render() {
     return (
@@ -39,5 +39,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchCategories }
+  { fetchCategories, addNewItem }
 )(App);
