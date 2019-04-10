@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { getCategories } from "../api/categories";
+import { addNewItem } from "../actions/categoryActions";
 
 import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -11,16 +12,8 @@ class AddItemForm extends Component {
   state = {
     name: "",
     category: "",
-    categoryId: "",
-    categories: []
+    categoryId: ""
   };
-
-  async componentDidMount() {
-    const { data: categories } = await getCategories();
-    this.setState({
-      categories
-    });
-  }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -28,7 +21,7 @@ class AddItemForm extends Component {
 
   onAddItem = e => {
     e.preventDefault();
-    this.props.handleAddItem({
+    this.props.addNewItem({
       name: this.state.name,
       category: this.state.category
     });
@@ -41,7 +34,6 @@ class AddItemForm extends Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <form
         onSubmit={this.onAddItem}
@@ -67,7 +59,7 @@ class AddItemForm extends Component {
           value={this.state.category}
           className={classes.textField}
         >
-          {this.state.categories.map(category => (
+          {this.props.categories.map(category => (
             <MenuItem key={category._id} value={category._id}>
               {category.name}
             </MenuItem>
@@ -117,4 +109,7 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(AddItemForm);
+export default connect(
+  null,
+  { addNewItem }
+)(withStyles(styles)(AddItemForm));
