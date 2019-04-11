@@ -2,39 +2,25 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Item from "./Item";
-import { getCategoryItems } from "../api/categories";
+import { fetchCategoryItems } from "../actions/categoryActions";
 
 class Category extends Component {
-  state = {
-    items: []
-  };
-
   async componentDidMount() {
-    const result = await getCategoryItems(this.props.id);
-
-    this.setState({
-      items: result.data.items
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.newItem !== prevProps.newItem) {
-      if (this.props.newItem.category === this.props.id) {
-        this.setState({
-          items: [...this.state.items, this.props.newItem]
-        });
-      }
-    }
+    const { category } = this.props;
+    await this.props.fetchCategoryItems(category._id);
   }
 
   renderItems = () => {
-    return this.state.items.map(item => <Item key={item._id} item={item} />);
+    const items = this.props.items[this.props.category.name];
+    if (!items) return <p>Loading...</p>;
+    return items.map(item => <Item item={item} key={item._id} />);
   };
 
   render() {
+    const { category } = this.props;
     return (
       <div>
-        <h1>{this.props.name}</h1>
+        <h1>{category.name}</h1>
         {this.renderItems()}
       </div>
     );
@@ -43,8 +29,11 @@ class Category extends Component {
 
 const mapStateToProps = state => {
   return {
-    newItem: state.item
+    items: state.items.items
   };
 };
 
-export default connect(mapStateToProps)(Category);
+export default connect(
+  mapStateToProps,
+  { fetchCategoryItems }
+)(Category);

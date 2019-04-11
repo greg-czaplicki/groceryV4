@@ -1,42 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchCategoryNames } from "./actions/categoryActions";
 import Category from "./components/Category";
-import AddItemForm from "./components/AddItemForm";
+import { fetchCategoryNames } from "./actions/categoryActions";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchCategoryNames();
+  async componentDidMount() {
+    await this.props.fetchCategoryNames();
   }
 
   renderCategories = () => {
-    return this.props.categories.map(category => (
-      <Category key={category._id} name={category.name} id={category._id} />
+    const { categories } = this.props;
+    return categories.map(category => (
+      <Category key={category._id} category={category} />
     ));
   };
 
-  handleAddItem = item => {
-    console.log(item);
-  };
-
   render() {
-    return (
-      <div>
-        <h1>Grocery V4</h1>
-        <AddItemForm
-          onAddItem={this.handleAddItem}
-          categories={this.props.categories}
-        />
-        {this.renderCategories()}
-      </div>
-    );
+    return this.props.isFetching ? <p>Loading...</p> : this.renderCategories();
   }
 }
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories
+    categories: state.categories.categories,
+    isFetching: state.categories.isFetching
   };
 };
 

@@ -1,21 +1,28 @@
-import { FETCH_CATEGORIES, ADD_ITEM } from "./types";
-import { getCategories } from "../api/categories";
-import { addItem } from "../api/items";
+import { FETCH_CATEGORIES, FETCH_CATEGORY_ITEMS } from "./types";
+import { getCategories, getCategoryItems } from "../api/categories";
 
 export const fetchCategoryNames = () => async dispatch => {
-  const response = await getCategories();
+  const { data } = await getCategories();
 
   dispatch({
     type: FETCH_CATEGORIES,
-    payload: response.data
+    payload: data
   });
 };
 
-export const addNewItem = item => async dispatch => {
-  const response = await addItem(item);
+export const fetchCategoryItems = categoryId => async dispatch => {
+  const { data } = await getCategoryItems(categoryId);
+
+  const category = data.name;
+
+  const result = data.items.reduce((items, item) => {
+    items[category] = items[category] ? [...items[category], item] : [item];
+
+    return items;
+  }, {});
 
   dispatch({
-    type: ADD_ITEM,
-    payload: response.data
+    type: FETCH_CATEGORY_ITEMS,
+    payload: result
   });
 };

@@ -26,7 +26,9 @@ module.exports = {
     const { id } = req.params;
     const patchItem = req.body;
 
-    const result = await Item.findByIdAndUpdate(id, patchItem, { new: true });
+    const result = await Item.findByIdAndUpdate(id, patchItem, {
+      new: true
+    }).select("-category");
     res.status(200).json(result);
   },
 

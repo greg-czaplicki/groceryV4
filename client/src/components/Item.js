@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
-class ITem extends Component {
+class Item extends Component {
   state = {};
   render() {
     return (
       <div>
-        <h4>{this.props.item.name}</h4>
+        {this.props.item.name} - {this.props.item.quantity}
       </div>
     );
   }
 }
 
-export default ITem;
+export default Item;

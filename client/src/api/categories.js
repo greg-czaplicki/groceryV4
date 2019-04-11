@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const getCategories = () => {
-  return axios.get("http://localhost:3000/categories/");
+  return axios.get("http://localhost:3001/categories/");
 };
 
 export const getCategoryItems = id => {
-  return axios.get(`http://localhost:3000/categories/${id}/items`);
+  return axios.get(`http://localhost:3001/categories/${id}/items`);
 };

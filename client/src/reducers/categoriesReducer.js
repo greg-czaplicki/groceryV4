@@ -1,9 +1,19 @@
 import { FETCH_CATEGORIES } from "../actions/types";
 
-const categoriesReducer = (state = [], action) => {
+const intialState = {
+  categories: [],
+  isFetching: false,
+  error: undefined
+};
+
+const categoriesReducer = (state = intialState, action) => {
   switch (action.type) {
     case FETCH_CATEGORIES:
-      return action.payload;
+      return {
+        ...state,
+        isFetching: false,
+        categories: action.payload
+      };
     default:
       return state;
   }
