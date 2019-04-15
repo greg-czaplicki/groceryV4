@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Category from "./components/Category";
+import AddItemForm from "./components/AddItemForm"
 import { fetchCategoryNames } from "./actions/categoryActions";
 
 class App extends Component {
@@ -17,7 +18,12 @@ class App extends Component {
   };
 
   render() {
-    return this.props.isFetching ? <p>Loading...</p> : this.renderCategories();
+    return (
+      <div>
+        <AddItemForm categories={this.props.categories} />
+        {this.props.isFetching ? <p>Loading...</p> : this.renderCategories()}
+      </div>
+    );
   }
 }
 

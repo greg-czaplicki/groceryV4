@@ -1,5 +1,9 @@
-import { FETCH_CATEGORIES, FETCH_CATEGORY_ITEMS } from "./types";
-import { getCategories, getCategoryItems } from "../api/categories";
+import {
+  FETCH_CATEGORIES,
+  FETCH_CATEGORY_ITEMS,
+  ADD_ITEM_TO_CATEGORY
+} from "./types";
+import { getCategories, getCategoryItems, addItem } from "../api/categories";
 
 export const fetchCategoryNames = () => async dispatch => {
   const { data } = await getCategories();
@@ -24,5 +28,14 @@ export const fetchCategoryItems = categoryId => async dispatch => {
   dispatch({
     type: FETCH_CATEGORY_ITEMS,
     payload: result
+  });
+};
+
+export const addItemToCategory = item => async dispatch => {
+  const newItem = await addItem(item);
+
+  dispatch({
+    type: ADD_ITEM_TO_CATEGORY,
+    payload: newItem
   });
 };

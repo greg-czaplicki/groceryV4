@@ -1,4 +1,4 @@
-import { FETCH_CATEGORY_ITEMS } from "../actions/types";
+import { FETCH_CATEGORY_ITEMS, ADD_ITEM_TO_CATEGORY } from "../actions/types";
 
 const intialState = {
   items: {},
@@ -9,6 +9,12 @@ const intialState = {
 const itemsReducer = (state = intialState, action) => {
   switch (action.type) {
     case FETCH_CATEGORY_ITEMS:
+      return {
+        ...state,
+        isFetching: false,
+        items: { ...state.items, ...action.payload }
+      };
+    case ADD_ITEM_TO_CATEGORY:
       return {
         ...state,
         isFetching: false,

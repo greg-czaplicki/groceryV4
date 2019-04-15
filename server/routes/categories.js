@@ -22,7 +22,10 @@ router
   )
   .delete(categoriesController.deleteCategory);
 
-router.route("/:id/items").get(categoriesController.getCategoryItems);
+router
+  .route("/:id/items")
+  .post(categoriesController.addItemToCategory)
+  .get(categoriesController.getCategoryItems);
 
 router
   .route("/:id/items/complete")

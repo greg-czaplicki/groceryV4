@@ -59,5 +59,14 @@ module.exports = {
       }
     });
     res.status(200).json(result);
+  },
+
+  addItemToCategory: async (req, res, next) => {
+    const newItem = new Item(req.body);
+    const category = await Category.findById(req.body.category);
+    category.items.push(newItem);
+    await category.save();
+    const result = await newItem.save();
+    res.status(200).json(result);
   }
 };
