@@ -18,10 +18,17 @@ class AddItemForm extends Component {
 
   handleAddItem = e => {
     e.preventDefault();
+
+    const { name: categoryName } = this.props.categories.find(
+      category => category._id === this.state.category
+    );
+
     const item = {
       name: this.state.name,
-      category: this.state.category
+      category: this.state.category,
+      categoryName
     };
+
     this.props.addItemToCategory(item);
 
     this.setState({

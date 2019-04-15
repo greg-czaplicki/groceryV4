@@ -4,6 +4,10 @@ export const getCategories = () => {
   return axios.get("http://localhost:3001/categories/");
 };
 
+export const getCategory = id => {
+  return axios.get(`http://localhost:3001/categories/${id}`);
+};
+
 export const getCategoryItems = id => {
   return axios.get(`http://localhost:3001/categories/${id}/items`);
 };

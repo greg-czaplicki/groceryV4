@@ -32,10 +32,11 @@ export const fetchCategoryItems = categoryId => async dispatch => {
 };
 
 export const addItemToCategory = item => async dispatch => {
-  const newItem = await addItem(item);
+  const { categoryName } = item;
+  const { data } = await addItem(item);
 
   dispatch({
     type: ADD_ITEM_TO_CATEGORY,
-    payload: newItem
+    payload: { item: data, categoryName }
   });
 };

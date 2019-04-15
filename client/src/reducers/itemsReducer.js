@@ -18,7 +18,13 @@ const itemsReducer = (state = intialState, action) => {
       return {
         ...state,
         isFetching: false,
-        items: { ...state.items, ...action.payload }
+        items: {
+          ...state.items,
+          [action.payload.categoryName]: [
+            ...(state.items[action.payload.categoryName] || []),
+            action.payload.item
+          ]
+        }
       };
     default:
       return state;
