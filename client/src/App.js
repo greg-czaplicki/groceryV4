@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Category from "./components/Category";
-import AddItemForm from "./components/AddItemForm"
+import AddItemForm from "./components/AddItemForm";
 import { fetchCategoryNames } from "./actions/categoryActions";
 
 class App extends Component {
@@ -10,18 +10,22 @@ class App extends Component {
     await this.props.fetchCategoryNames();
   }
 
-  renderCategories = () => {
-    const { categories } = this.props;
+  renderCategories() {
+    const { categories, isLoading } = this.props;
+
+    if (isLoading) return <h3>Loading...</h3>;
+
     return categories.map(category => (
-      <Category key={category._id} category={category} />
+      <Category category={category} key={category._id} />
     ));
-  };
+  }
 
   render() {
     return (
       <div>
+        <h1>App</h1>
         <AddItemForm categories={this.props.categories} />
-        {this.props.isFetching ? <p>Loading...</p> : this.renderCategories()}
+        {this.renderCategories()}
       </div>
     );
   }
@@ -29,8 +33,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories.categories,
-    isFetching: state.categories.isFetching
+    categories: state.categories.payload,
+    isLoading: state.categories.isLoading
   };
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { addItemToCategory } from "../actions/categoryActions";
+import { addItemToList } from "../actions/itemActions";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -18,19 +18,19 @@ class AddItemForm extends Component {
 
   handleAddItem = e => {
     e.preventDefault();
-
+    // find cateogory name
     const { name: categoryName } = this.props.categories.find(
       category => category._id === this.state.category
     );
-
+    // create item object
     const item = {
       name: this.state.name,
       category: this.state.category,
       categoryName
     };
-
-    this.props.addItemToCategory(item);
-
+    // disptach add item action
+    this.props.addItemToList(item);
+    // reset form state
     this.setState({
       name: "",
       category: ""
@@ -74,5 +74,5 @@ class AddItemForm extends Component {
 
 export default connect(
   null,
-  { addItemToCategory }
+  { addItemToList }
 )(AddItemForm);

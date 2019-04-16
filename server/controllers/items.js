@@ -28,7 +28,7 @@ module.exports = {
 
     const result = await Item.findByIdAndUpdate(id, patchItem, {
       new: true
-    }).select("-category");
+    });
     res.status(200).json(result);
   },
 
@@ -41,5 +41,3 @@ module.exports = {
     res.status(200).json(`${result.name} was successfully deleted.`);
   }
 };
-
-//TODO deleting an item does not remove it from the category subdocument

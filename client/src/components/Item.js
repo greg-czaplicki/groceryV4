@@ -5,7 +5,7 @@ class Item extends Component {
   render() {
     return (
       <div>
-        {this.props.item.name} - {this.props.item.quantity}
+        <h4>{this.props.item.name}</h4>
       </div>
     );
   }
