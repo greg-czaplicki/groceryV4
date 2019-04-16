@@ -8,69 +8,63 @@ import {
   ADD_ITEM_TO_CATEGORY_FAILURE
 } from "../actions/types";
 
+import produce from "immer";
+
 const intialState = {
   payload: [],
   isLoading: false,
   error: {}
 };
 
-const itemsReducer = (state = intialState, action) => {
-  switch (action.type) {
-    case FETCH_CATEGORY_ITEMS_DATA:
-      return {
-        ...state,
-        isLoading: true
-      };
+const itemsReducer = (state = intialState, action) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case FETCH_CATEGORY_ITEMS_DATA:
+        return {
+          ...state,
+          isLoading: true
+        };
 
-    case FETCH_CATEGORY_ITEMS_SUCCESS:
-      return {
-        ...state,
-        payload: [...state.payload, action.payload],
-        isLoading: false
-      };
+      case FETCH_CATEGORY_ITEMS_SUCCESS:
+        return {
+          ...state,
+          payload: [...state.payload, action.payload],
+          isLoading: false
+        };
 
-    case FETCH_CATEGORY_ITEMS_FAILURE:
-      return {
-        ...state,
-        error: action.error,
-        isLoading: false
-      };
-    case ADD_ITEM_TO_CATEGORY:
-      return {
-        ...state,
-        isLoading: true
-      };
+      case FETCH_CATEGORY_ITEMS_FAILURE:
+        return {
+          ...state,
+          error: action.error,
+          isLoading: false
+        };
+      case ADD_ITEM_TO_CATEGORY:
+        return {
+          ...state,
+          isLoading: true
+        };
 
-    case ADD_ITEM_TO_CATEGORY_SUCCESS:
-      const result = state.payload.find(
-        category => category._id === action.payload.category
-      );
+      case ADD_ITEM_TO_CATEGORY_SUCCESS:
+        const result = state.payload.find(
+          category => category._id === action.payload.category
+        );
+        const index = state.payload.indexOf(result);
 
-      const index = state.payload.indexOf(result);
+        draft.payload[index].items.push(action.payload);
+        draft.isLoading = false;
+        break;
 
-      return {
-        ...state,
-        payload: [
-          ...state.payload,
-          {
-            ...state.payload[index],
-            items: [...state.payload[index].items, action.payload]
-          }
-        ],
-        isLoading: false
-      };
-
-    case ADD_ITEM_TO_CATEGORY_FAILURE:
-      return {
-        ...state,
-        error: action.error,
-        isLoading: false
-      };
-    case RESET_CATEGORY_ITEMS_DATA:
-      return { ...state, ...this.initialState };
-    default:
-      return state;
-  }
-};
+      case ADD_ITEM_TO_CATEGORY_FAILURE:
+        return {
+          ...state,
+          error: action.error,
+          isLoading: false
+        };
+      case RESET_CATEGORY_ITEMS_DATA:
+        return { ...state, ...this.initialState };
+      default:
+        return state;
+    }
+  });
 
 export default itemsReducer;
