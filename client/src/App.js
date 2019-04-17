@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import Category from "./components/Category";
 import AddItemForm from "./components/AddItemForm";
 import { fetchCategoryNames } from "./actions/categoryActions";
+import { fetchALLItems } from "./actions/itemActions";
 
 class App extends Component {
   async componentDidMount() {
     await this.props.fetchCategoryNames();
+    await this.props.fetchALLItems();
   }
 
   renderCategories() {
@@ -40,5 +42,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchCategoryNames }
+  { fetchCategoryNames, fetchALLItems }
 )(App);

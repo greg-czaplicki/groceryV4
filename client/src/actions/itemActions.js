@@ -1,9 +1,7 @@
-import { normalize, schema } from "normalizr";
-
 import {
-  FETCH_CATEGORY_ITEMS_DATA,
-  FETCH_CATEGORY_ITEMS_SUCCESS,
-  FETCH_CATEGORY_ITEMS_FAILURE,
+  FETCH_ALL_ITEMS_DATA,
+  FETCH_ALL_ITEMS_SUCCESS,
+  FETCH_ALL_ITEMS_FAILURE,
   ADD_ITEM_TO_CATEGORY,
   ADD_ITEM_TO_CATEGORY_SUCCESS,
   ADD_ITEM_TO_CATEGORY_FAILURE,
@@ -11,40 +9,27 @@ import {
   TOGGLE_ITEM_COMPLETE_SUCCESS,
   TOGGLE_ITEM_COMPLETE_FAILURE
 } from "./types";
-import { getCategoryItems } from "../api/categories";
-import { addItem, toggleItem } from "../api/items";
+import { addItem, toggleItem, getAllItems } from "../api/items";
 
-export const fetchCategoryItems = categoryId => {
+export const fetchALLItems = () => {
   return async dispatch => {
     // Initiate loading state
     dispatch({
-      type: FETCH_CATEGORY_ITEMS_DATA
+      type: FETCH_ALL_ITEMS_DATA
     });
 
     try {
       // Call the API
-      const { data } = await getCategoryItems(categoryId);
+      const { data } = await getAllItems();
       // Update payload in reducer on success
-
-      const itemSchema = new schema.Entity("items", {}, { idAttribute: "_id" });
-
-      const categorySchema = new schema.Entity(
-        "Category",
-        { items: [itemSchema] },
-        { idAttribute: "_id" }
-      );
-
-      const normalizedData = normalize(data, categorySchema);
-      console.log(normalizedData);
-
       dispatch({
-        type: FETCH_CATEGORY_ITEMS_SUCCESS,
+        type: FETCH_ALL_ITEMS_SUCCESS,
         payload: data
       });
     } catch (err) {
       // Update error in reducer on failure
       dispatch({
-        type: FETCH_CATEGORY_ITEMS_FAILURE,
+        type: FETCH_ALL_ITEMS_FAILURE,
         error: err
       });
     }

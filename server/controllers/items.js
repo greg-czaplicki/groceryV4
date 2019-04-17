@@ -3,7 +3,7 @@ const Category = require("../models/category");
 
 module.exports = {
   index: async (req, res, next) => {
-    const items = await Item.find().populate("category", "name");
+    const items = await Item.find();
     res.status(200).json(items);
   },
 

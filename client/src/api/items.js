@@ -9,3 +9,7 @@ export const toggleItem = item => {
     isComplete: !item.isComplete
   });
 };
+
+export const getAllItems = () => {
+  return axios.get("http://localhost:3001/items/");
+};
