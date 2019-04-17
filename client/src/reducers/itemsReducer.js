@@ -2,17 +2,18 @@ import {
   FETCH_CATEGORY_ITEMS_DATA,
   FETCH_CATEGORY_ITEMS_SUCCESS,
   FETCH_CATEGORY_ITEMS_FAILURE,
-  RESET_CATEGORY_ITEMS_DATA,
   ADD_ITEM_TO_CATEGORY,
   ADD_ITEM_TO_CATEGORY_SUCCESS,
-  ADD_ITEM_TO_CATEGORY_FAILURE
+  ADD_ITEM_TO_CATEGORY_FAILURE,
+  TOGGLE_ITEM_COMPLETE,
+  TOGGLE_ITEM_COMPLETE_SUCCESS,
+  TOGGLE_ITEM_COMPLETE_FAILURE
 } from "../actions/types";
 
 import produce from "immer";
 
 const intialState = {
   payload: [],
-  isLoading: false,
   error: {}
 };
 
@@ -21,47 +22,69 @@ const itemsReducer = (state = intialState, action) =>
     switch (action.type) {
       case FETCH_CATEGORY_ITEMS_DATA:
         return {
-          ...state,
-          isLoading: true
+          ...state
         };
 
       case FETCH_CATEGORY_ITEMS_SUCCESS:
         return {
           ...state,
-          payload: [...state.payload, action.payload],
-          isLoading: false
+          payload: [...state.payload, action.payload]
         };
 
       case FETCH_CATEGORY_ITEMS_FAILURE:
         return {
           ...state,
-          error: action.error,
-          isLoading: false
+          error: action.error
         };
       case ADD_ITEM_TO_CATEGORY:
         return {
-          ...state,
-          isLoading: true
+          ...state
         };
 
       case ADD_ITEM_TO_CATEGORY_SUCCESS:
-        const result = state.payload.find(
+        // find item's category
+        const selectedCategory = state.payload.find(
           category => category._id === action.payload.category
         );
-        const index = state.payload.indexOf(result);
+        // find index of category
+        const categoryIndex = state.payload.indexOf(selectedCategory);
 
-        draft.payload[index].items.push(action.payload);
-        draft.isLoading = false;
+        draft.payload[categoryIndex].items.push(action.payload);
         break;
 
       case ADD_ITEM_TO_CATEGORY_FAILURE:
         return {
           ...state,
-          error: action.error,
-          isLoading: false
+          error: action.error
         };
-      case RESET_CATEGORY_ITEMS_DATA:
-        return { ...state, ...this.initialState };
+
+      case TOGGLE_ITEM_COMPLETE:
+        return {
+          ...state
+        };
+
+      case TOGGLE_ITEM_COMPLETE_SUCCESS:
+        const itemCategory = state.payload.find(
+          category => category._id === action.payload.category
+        );
+
+        const catIndex = state.payload.indexOf(itemCategory);
+
+        const findItem = itemCategory.items.findIndex(
+          item => item._id === action.payload._id
+        );
+
+        draft.payload[catIndex].items[findItem].isComplete = !draft.payload[
+          catIndex
+        ].items[findItem].isComplete;
+        break;
+
+      case TOGGLE_ITEM_COMPLETE_FAILURE:
+        return {
+          ...state,
+          error: action.error
+        };
+
       default:
         return state;
     }

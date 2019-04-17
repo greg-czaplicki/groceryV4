@@ -1,8 +1,7 @@
 import {
   FETCH_CATEGORIES_DATA,
   FETCH_CATEGORIES_FAILURE,
-  FETCH_CATEGORIES_SUCCESS,
-  RESET_CATEGORIES_DATA
+  FETCH_CATEGORIES_SUCCESS
 } from "../actions/types";
 
 const intialState = {
@@ -32,8 +31,6 @@ const categoriesReducer = (state = intialState, action) => {
         error: action.error,
         isLoading: false
       };
-    case RESET_CATEGORIES_DATA:
-      return { ...state, ...this.initialState };
     default:
       return state;
   }
