@@ -6,7 +6,7 @@ import "./item.css";
 
 class Item extends Component {
   render() {
-    let classes = this.props.item.isComplete ? "complete" : "";
+    let classes = this.props.item.isComplete ? "complete" : null;
     return (
       <div>
         <h4

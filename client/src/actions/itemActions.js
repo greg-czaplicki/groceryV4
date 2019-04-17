@@ -1,3 +1,5 @@
+import { normalize, schema } from "normalizr";
+
 import {
   FETCH_CATEGORY_ITEMS_DATA,
   FETCH_CATEGORY_ITEMS_SUCCESS,
@@ -9,7 +11,6 @@ import {
   TOGGLE_ITEM_COMPLETE_SUCCESS,
   TOGGLE_ITEM_COMPLETE_FAILURE
 } from "./types";
-
 import { getCategoryItems } from "../api/categories";
 import { addItem, toggleItem } from "../api/items";
 
@@ -24,6 +25,17 @@ export const fetchCategoryItems = categoryId => {
       // Call the API
       const { data } = await getCategoryItems(categoryId);
       // Update payload in reducer on success
+
+      const itemSchema = new schema.Entity("items", {}, { idAttribute: "_id" });
+
+      const categorySchema = new schema.Entity(
+        "Category",
+        { items: [itemSchema] },
+        { idAttribute: "_id" }
+      );
+
+      const normalizedData = normalize(data, categorySchema);
+      console.log(normalizedData);
 
       dispatch({
         type: FETCH_CATEGORY_ITEMS_SUCCESS,
