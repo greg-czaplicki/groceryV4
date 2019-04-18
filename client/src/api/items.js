@@ -21,3 +21,7 @@ export const getItemInfo = id => {
 export const updateItemInfo = (id, item) => {
   return axios.patch(`http://localhost:3001/items/${id}`, item);
 };
+
+export const deleteItem = id => {
+  return axios.delete(`http://localhost:3001/items/${id}`);
+};

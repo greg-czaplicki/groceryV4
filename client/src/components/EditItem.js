@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { editItemInfo, fetchItemInfo } from "../actions/itemActions";
+import {
+  editItemInfo,
+  fetchItemInfo,
+  deleteItemFromList
+} from "../actions/itemActions";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import DeleteIcon from "@material-ui/icons/Delete";
+import SaveIcon from "@material-ui/icons/Save";
 
 class EditItem extends Component {
   state = {
@@ -52,6 +58,11 @@ class EditItem extends Component {
     const id = this.state._id;
     // disptach edit item action
     this.props.editItemInfo(id, item);
+    this.props.history.push("/");
+  };
+
+  handleDeleteItem = () => {
+    this.props.deleteItemFromList(this.state._id);
     this.props.history.push("/");
   };
 
@@ -104,8 +115,18 @@ class EditItem extends Component {
           />
         </FormGroup>
 
-        <Button type="submit" variant="contained" color="secondary">
+        <Button type="submit" variant="contained" color="primary">
           Update Item
+          <SaveIcon />
+        </Button>
+
+        <Button
+          onClick={this.handleDeleteItem}
+          variant="contained"
+          color="secondary"
+        >
+          Delete Item
+          <DeleteIcon />
         </Button>
       </form>
     );
@@ -121,5 +142,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { editItemInfo, fetchItemInfo }
+  { editItemInfo, fetchItemInfo, deleteItemFromList }
 )(EditItem);

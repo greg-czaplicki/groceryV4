@@ -13,14 +13,18 @@ import {
   FETCH_ITEM_FAILURE,
   EDIT_ITEM,
   EDIT_ITEM_SUCCESS,
-  EDIT_ITEM_FAILURE
+  EDIT_ITEM_FAILURE,
+  DELETE_ITEM,
+  DELETE_ITEM_SUCCESS,
+  DELETE_ITEM_FAILURE
 } from "./types";
 import {
   addItem,
   toggleItem,
   getAllItems,
   getItemInfo,
-  updateItemInfo
+  updateItemInfo,
+  deleteItem
 } from "../api/items";
 
 export const fetchALLItems = () => {
@@ -130,6 +134,29 @@ export const editItemInfo = (id, item) => {
     } catch (err) {
       dispatch({
         type: EDIT_ITEM_FAILURE,
+        error: err
+      });
+    }
+  };
+};
+
+export const deleteItemFromList = id => {
+  return async dispatch => {
+    dispatch({
+      type: DELETE_ITEM
+    });
+
+    try {
+      const { data } = await deleteItem(id);
+      console.log(data);
+
+      dispatch({
+        type: DELETE_ITEM_SUCCESS,
+        payload: data
+      });
+    } catch (err) {
+      dispatch({
+        type: DELETE_ITEM_FAILURE,
         error: err
       });
     }

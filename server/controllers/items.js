@@ -38,6 +38,6 @@ module.exports = {
     const category = await Category.findById(result.category);
     category.items.pull(result);
     await category.save();
-    res.status(200).json(`${result.name} was successfully deleted.`);
+    res.status(200).json(result);
   }
 };

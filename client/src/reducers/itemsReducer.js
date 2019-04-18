@@ -97,23 +97,6 @@ const itemsReducer = (state = intialState, action) =>
           error: action.error
         };
 
-      case EDIT_ITEM:
-        return {
-          ...state
-        };
-
-      case EDIT_ITEM_SUCCESS:
-        return {
-          ...state,
-          payload: Object.assign(state.payload, action.payload)
-        };
-
-      case EDIT_ITEM_FAILURE:
-        return {
-          ...state,
-          error: action.error
-        };
-
       default:
         return state;
     }
