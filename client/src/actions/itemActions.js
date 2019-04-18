@@ -7,9 +7,21 @@ import {
   ADD_ITEM_TO_CATEGORY_FAILURE,
   TOGGLE_ITEM_COMPLETE,
   TOGGLE_ITEM_COMPLETE_SUCCESS,
-  TOGGLE_ITEM_COMPLETE_FAILURE
+  TOGGLE_ITEM_COMPLETE_FAILURE,
+  FETCH_ITEM,
+  FETCH_ITEM_SUCCESS,
+  FETCH_ITEM_FAILURE,
+  EDIT_ITEM,
+  EDIT_ITEM_SUCCESS,
+  EDIT_ITEM_FAILURE
 } from "./types";
-import { addItem, toggleItem, getAllItems } from "../api/items";
+import {
+  addItem,
+  toggleItem,
+  getAllItems,
+  getItemInfo,
+  updateItemInfo
+} from "../api/items";
 
 export const fetchALLItems = () => {
   return async dispatch => {
@@ -74,6 +86,50 @@ export const toggleItemComplete = item => {
     } catch (err) {
       dispatch({
         type: TOGGLE_ITEM_COMPLETE_FAILURE,
+        error: err
+      });
+    }
+  };
+};
+
+export const fetchItemInfo = item => {
+  return async dispatch => {
+    dispatch({
+      type: FETCH_ITEM
+    });
+
+    try {
+      const { data } = await getItemInfo(item);
+
+      dispatch({
+        type: FETCH_ITEM_SUCCESS,
+        payload: data
+      });
+    } catch (err) {
+      dispatch({
+        type: FETCH_ITEM_FAILURE,
+        error: err
+      });
+    }
+  };
+};
+
+export const editItemInfo = (id, item) => {
+  return async dispatch => {
+    dispatch({
+      type: EDIT_ITEM
+    });
+
+    try {
+      const { data } = await updateItemInfo(id, item);
+
+      dispatch({
+        type: EDIT_ITEM_SUCCESS,
+        payload: data
+      });
+    } catch (err) {
+      dispatch({
+        type: EDIT_ITEM_FAILURE,
         error: err
       });
     }

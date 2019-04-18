@@ -13,3 +13,11 @@ export const toggleItem = item => {
 export const getAllItems = () => {
   return axios.get("http://localhost:3001/items/");
 };
+
+export const getItemInfo = id => {
+  return axios.get(`http://localhost:3001/items/${id}`);
+};
+
+export const updateItemInfo = (id, item) => {
+  return axios.patch(`http://localhost:3001/items/${id}`, item);
+};

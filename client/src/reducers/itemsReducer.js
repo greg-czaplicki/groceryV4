@@ -7,13 +7,20 @@ import {
   ADD_ITEM_TO_CATEGORY_FAILURE,
   TOGGLE_ITEM_COMPLETE,
   TOGGLE_ITEM_COMPLETE_SUCCESS,
-  TOGGLE_ITEM_COMPLETE_FAILURE
+  TOGGLE_ITEM_COMPLETE_FAILURE,
+  FETCH_ITEM,
+  FETCH_ITEM_SUCCESS,
+  FETCH_ITEM_FAILURE,
+  EDIT_ITEM,
+  EDIT_ITEM_SUCCESS,
+  EDIT_ITEM_FAILURE
 } from "../actions/types";
 
 import produce from "immer";
 
 const intialState = {
   payload: [],
+  updateItem: {},
   error: {}
 };
 
@@ -68,6 +75,40 @@ const itemsReducer = (state = intialState, action) =>
         break;
 
       case TOGGLE_ITEM_COMPLETE_FAILURE:
+        return {
+          ...state,
+          error: action.error
+        };
+
+      case FETCH_ITEM:
+        return {
+          ...state
+        };
+
+      case FETCH_ITEM_SUCCESS:
+        return {
+          ...state,
+          updateItem: action.payload
+        };
+
+      case FETCH_ITEM_FAILURE:
+        return {
+          ...state,
+          error: action.error
+        };
+
+      case EDIT_ITEM:
+        return {
+          ...state
+        };
+
+      case EDIT_ITEM_SUCCESS:
+        return {
+          ...state,
+          payload: Object.assign(state.payload, action.payload)
+        };
+
+      case EDIT_ITEM_FAILURE:
         return {
           ...state,
           error: action.error

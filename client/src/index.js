@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import store from "./store";
 import App from "./App";
@@ -15,7 +15,6 @@ const notFound = () => {
   return (
     <div>
       <h1>404 Page Not Found!</h1>
-      <Link to="/">Go to homepage</Link>
     </div>
   );
 };
