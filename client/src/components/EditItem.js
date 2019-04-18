@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import {
-  editItemInfo,
-  fetchItemInfo,
-  deleteItemFromList
-} from "../actions/itemActions";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -14,6 +9,12 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
+
+import {
+  editItemInfo,
+  fetchItemInfo,
+  deleteItemFromList
+} from "../actions/itemActions";
 
 class EditItem extends Component {
   state = {

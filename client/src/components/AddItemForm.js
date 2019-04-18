@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { addItemToList } from "../actions/itemActions";
+import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
+import { addItemToList } from "../actions/itemActions";
 
 class AddItemForm extends Component {
   state = {
@@ -34,8 +36,14 @@ class AddItemForm extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <form onSubmit={this.handleAddItem} noValidate autoComplete="off">
+      <form
+        onSubmit={this.handleAddItem}
+        className={classes.form}
+        noValidate
+        autoComplete="off"
+      >
         <TextField
           id="standard-name"
           label="Name"
@@ -68,7 +76,16 @@ class AddItemForm extends Component {
   }
 }
 
+const styles = {
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "baseline",
+    justifyContent: "space-evenly"
+  }
+};
+
 export default connect(
   null,
   { addItemToList }
-)(AddItemForm);
+)(withStyles(styles)(AddItemForm));

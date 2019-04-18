@@ -7,7 +7,17 @@ import { Link } from "react-router-dom";
 
 const styles = {
   root: {
-    width: 300
+    width: "100%",
+    display: "inline-flex",
+    backgroundColor: "#f50057",
+    color: "#fff",
+    justifyContent: "space-evenly",
+    position: "fixed",
+    left: 0,
+    bottom: 0
+  },
+  navItem: {
+    color: "#fff"
   }
 };
 
@@ -31,13 +41,25 @@ class Footer extends React.Component {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction component={Link} to="/" label="Items" />
+        <BottomNavigationAction
+          component={Link}
+          to="/"
+          label="Items"
+          className={classes.navItem}
+          style={{ color: "#fff" }}
+        />
         <BottomNavigationAction
           component={Link}
           to="/completed"
           label="Completed Items"
+          className={classes.navItem}
+          style={{ color: "#fff", flexGrow: 2 }}
         />
-        <BottomNavigationAction label="Recipes" />
+        <BottomNavigationAction
+          label="Recipes"
+          className={classes.navItem}
+          style={{ color: "#fff" }}
+        />
       </BottomNavigation>
     );
   }
