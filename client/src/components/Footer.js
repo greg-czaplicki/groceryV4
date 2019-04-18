@@ -32,7 +32,11 @@ class Footer extends React.Component {
         className={classes.root}
       >
         <BottomNavigationAction component={Link} to="/" label="Items" />
-        <BottomNavigationAction label="Completed Items" />
+        <BottomNavigationAction
+          component={Link}
+          to="/completed"
+          label="Completed Items"
+        />
         <BottomNavigationAction label="Recipes" />
       </BottomNavigation>
     );

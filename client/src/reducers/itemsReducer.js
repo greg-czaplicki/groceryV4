@@ -10,10 +10,7 @@ import {
   TOGGLE_ITEM_COMPLETE_FAILURE,
   FETCH_ITEM,
   FETCH_ITEM_SUCCESS,
-  FETCH_ITEM_FAILURE,
-  EDIT_ITEM,
-  EDIT_ITEM_SUCCESS,
-  EDIT_ITEM_FAILURE
+  FETCH_ITEM_FAILURE
 } from "../actions/types";
 
 import produce from "immer";

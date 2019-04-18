@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store";
 import App from "./App";
 import EditItem from "./components/EditItem";
+import CompletedCategoryContainer from "./components/CompletedCategoryContainer";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -26,6 +27,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/item/edit/:id" component={EditItem} />
+        <Route path="/completed" component={CompletedCategoryContainer} />
         <Route component={notFound} />
       </Switch>
       <Footer />
