@@ -25,7 +25,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>App</h1>
         <AddItemForm categories={this.props.categories} />
         {this.renderCategories()}
       </div>

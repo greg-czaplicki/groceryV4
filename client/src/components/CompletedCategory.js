@@ -1,23 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Item from "./Item";
+import CategoryContent from "./CategoryContent";
 
 class CompletedCategory extends Component {
-  //TODO - Refactor to hide categories with no items
-  renderItems() {
-    const { items } = this.props;
-    if (!items) return <p>Loading...</p>;
-
-    return items.map(item => <Item item={item} key={item._id} />);
-  }
-
   render() {
     return (
-      <div>
-        <h2>{this.props.category.name}</h2>
-        {this.renderItems()}
-      </div>
+      <CategoryContent
+        items={this.props.items}
+        category={this.props.category}
+      />
     );
   }
 }

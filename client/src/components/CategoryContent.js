@@ -10,10 +10,15 @@ class CategoryContent extends Component {
     return items.map(item => <Item item={item} key={item._id} />);
   }
 
+  renderCategoryName() {
+    const { items, category } = this.props;
+    if (items.length > 0) return <h3>{category.name}</h3>;
+  }
+
   render() {
     return (
       <div>
-        <h2>{this.props.category.name}</h2>
+        {this.renderCategoryName()}
         {this.renderItems()}
       </div>
     );

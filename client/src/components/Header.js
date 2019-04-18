@@ -19,11 +19,9 @@ function SimpleAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static" color="secondary">
         <Toolbar>
-          <Link to="/">
-            <Typography variant="h6" color="default">
-              Grocery List
-            </Typography>
-          </Link>
+          <Typography variant="h5" color="default" component={Link} to="/">
+            Grocery List
+          </Typography>
         </Toolbar>
       </AppBar>
     </div>
