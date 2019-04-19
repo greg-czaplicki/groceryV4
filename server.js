@@ -20,9 +20,6 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
-
 // Routes
 app.use("/api/items", itemsRouter);
 app.use("/api/categories", categoriesRouter);
@@ -41,9 +38,14 @@ app.use((err, req, res, next) => {
 });
 
 // Handles any requests that don't match the ones above
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
+if (process.env.NODE_ENV === "production") {
+  // Serve the static files from the React app
+  app.use(express.static(path.join(__dirname, "client/build")));
+
+  app.get("*", (req, res, next) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // Start server
 app.listen(serverConfig.port, () => {
