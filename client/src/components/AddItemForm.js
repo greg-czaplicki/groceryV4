@@ -68,7 +68,12 @@ class AddItemForm extends Component {
           ))}
         </TextField>
 
-        <Button type="submit" variant="contained" color="secondary">
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          disabled={!this.state.name.length || !this.state.category.length}
+        >
           Add Item
         </Button>
       </form>

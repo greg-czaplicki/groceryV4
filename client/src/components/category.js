@@ -1,18 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import CategoryContent from "./CategoryContent";
 
-class Category extends Component {
-  render() {
-    return (
-      <CategoryContent
-        items={this.props.items}
-        category={this.props.category}
-      />
-    );
-  }
-}
+const Category = ({ items, category }) => {
+  return <CategoryContent items={items} category={category} />;
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
