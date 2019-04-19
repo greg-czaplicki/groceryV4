@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const getCategories = () => {
-  return axios.get("/categories/");
+  return axios.get("/api/categories/");
 };
 
 export const getCategoryItems = id => {
-  return axios.get(`/categories/${id}/items`);
+  return axios.get(`/api/categories/${id}/items`);
 };

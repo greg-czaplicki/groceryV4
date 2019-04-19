@@ -1,27 +1,27 @@
 import axios from "axios";
 
 export const addItem = item => {
-  return axios.post("/items/", item);
+  return axios.post("/api/items/", item);
 };
 
 export const toggleItem = item => {
-  return axios.patch(`/items/${item._id}`, {
+  return axios.patch(`/api/items/${item._id}`, {
     isComplete: !item.isComplete
   });
 };
 
 export const getAllItems = () => {
-  return axios.get("/items/");
+  return axios.get("/api/items/");
 };
 
 export const getItemInfo = id => {
-  return axios.get(`/items/${id}`);
+  return axios.get(`/api/items/${id}`);
 };
 
 export const updateItemInfo = (id, item) => {
-  return axios.patch(`/items/${id}`, item);
+  return axios.patch(`/api/items/${id}`, item);
 };
 
 export const deleteItem = id => {
-  return axios.delete(`/items/${id}`);
+  return axios.delete(`/api/items/${id}`);
 };

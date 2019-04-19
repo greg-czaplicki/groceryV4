@@ -24,25 +24,24 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
 // Routes
-app.use("/items", itemsRouter);
-app.use("/categories", categoriesRouter);
+app.use("/api/items", itemsRouter);
+app.use("/api/categories", categoriesRouter);
 
-// // Error handler
-// app.use((err, req, res, next) => {
-//   const error = app.get("env") === "development" ? err : {};
-//   const status = error.status || 500;
+// Error handler
+app.use((err, req, res, next) => {
+  const error = app.get("env") === "development" ? err : {};
+  const status = error.status || 500;
 
-//   res.status(status).json({
-//     error: {
-//       message: error.message
-//     }
-//   });
-//   console.error(err);
-// });
+  res.status(status).json({
+    error: {
+      message: error.message
+    }
+  });
+  console.error(err);
+});
 
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
-  if (req.url === "/items" || req.url === "/categories") return next();
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
