@@ -1,6 +1,9 @@
 {
   "name": "groceryV4",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.0"
+  },
   "main": "server.js",
   "license": "MIT",
   "scripts": {
