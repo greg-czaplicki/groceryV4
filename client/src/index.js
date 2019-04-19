@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import pink from "@material-ui/core/colors/pink";
 
 import store from "./store";
 import App from "./App";
@@ -11,6 +10,9 @@ import EditItem from "./components/EditItem";
 import CompletedCategoryContainer from "./components/CompletedCategoryContainer";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import pink from "@material-ui/core/colors/pink";
 
 import "normalize.css";
 
@@ -68,3 +70,4 @@ ReactDOM.render(
   </MuiThemeProvider>,
   document.getElementById("root")
 );
+serviceWorker.register();
