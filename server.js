@@ -20,10 +20,6 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 
-// Routes
-app.use("/items", itemsRouter);
-app.use("/categories", categoriesRouter);
-
 // Error handler
 app.use((err, req, res, next) => {
   const error = app.get("env") === "development" ? err : {};
@@ -45,6 +41,9 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+// Routes
+app.use("/items", itemsRouter);
+app.use("/categories", categoriesRouter);
 
 // Start server
 app.listen(serverConfig.port, () => {
