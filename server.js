@@ -42,6 +42,7 @@ app.use("/categories", categoriesRouter);
 
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
+  if (req.url === "/items" || req.url === "/categories") return next();
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
