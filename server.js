@@ -8,7 +8,7 @@ const path = require("path");
 const itemsRouter = require("./routes/items");
 const categoriesRouter = require("./routes/categories");
 
-const serverConfig = require("../config/config");
+const serverConfig = require("./config/config");
 
 mongoose.connect(serverConfig.mongoURL, { useNewUrlParser: true });
 
