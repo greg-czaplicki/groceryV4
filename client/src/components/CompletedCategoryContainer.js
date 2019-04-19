@@ -11,10 +11,8 @@ const CompletedCategoryContainer = ({ categories, isLoading }) => {
     ));
   };
   return (
-    <div>
-      <h1>Completed Container</h1>
-      {renderCategories()}
-    </div>
+    //! REMOVE STYLES
+    <div style={{ marginBottom: 60, padding: 20 }}>{renderCategories()}</div>
   );
 };
 

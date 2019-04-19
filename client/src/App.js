@@ -25,7 +25,12 @@ class App extends Component {
   render() {
     return (
       //! REMOVE STYLE
-      <div style={{ marginBottom: 60, padding: 20 }}>
+      <div
+        style={{
+          marginBottom: 60,
+          padding: 20
+        }}
+      >
         <AddItemForm categories={this.props.categories} />
         {this.renderCategories()}
       </div>

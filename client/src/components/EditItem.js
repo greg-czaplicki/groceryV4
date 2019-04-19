@@ -9,6 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
+import Paper from "@material-ui/core/Paper";
 
 import {
   editItemInfo,
@@ -69,67 +70,69 @@ class EditItem extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleEditItem} noValidate autoComplete="off">
-        <TextField
-          id="standard-name"
-          label="Name"
-          value={this.state.name}
-          onChange={this.handleChange("name")}
-          margin="normal"
-          autoFocus
-        />
-
-        <TextField
-          id="standard-select-category"
-          select
-          label="Select"
-          value={this.state.category}
-          onChange={this.handleChange("category")}
-          helperText="Please select a category"
-          margin="normal"
-        >
-          {this.props.categories.map(category => (
-            <MenuItem key={category._id} value={category._id}>
-              {category.name}
-            </MenuItem>
-          ))}
-        </TextField>
-
-        <TextField
-          id="standard-quantity"
-          label="Quantity"
-          value={this.state.quantity}
-          onChange={this.handleChange("quantity")}
-          margin="normal"
-        />
-
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={this.state.isComplete}
-                onChange={this.handleSliderChange("isComplete")}
-                value="isComplete"
-              />
-            }
-            label="Complete"
+      <Paper>
+        <form onSubmit={this.handleEditItem} noValidate autoComplete="off">
+          <TextField
+            id="standard-name"
+            label="Name"
+            value={this.state.name}
+            onChange={this.handleChange("name")}
+            margin="normal"
+            autoFocus
           />
-        </FormGroup>
 
-        <Button type="submit" variant="contained" color="primary">
-          Update Item
-          <SaveIcon />
-        </Button>
+          <TextField
+            id="standard-select-category"
+            select
+            label="Select"
+            value={this.state.category}
+            onChange={this.handleChange("category")}
+            helperText="Please select a category"
+            margin="normal"
+          >
+            {this.props.categories.map(category => (
+              <MenuItem key={category._id} value={category._id}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </TextField>
 
-        <Button
-          onClick={this.handleDeleteItem}
-          variant="contained"
-          color="secondary"
-        >
-          Delete Item
-          <DeleteIcon />
-        </Button>
-      </form>
+          <TextField
+            id="standard-quantity"
+            label="Quantity"
+            value={this.state.quantity}
+            onChange={this.handleChange("quantity")}
+            margin="normal"
+          />
+
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={this.state.isComplete}
+                  onChange={this.handleSliderChange("isComplete")}
+                  value="isComplete"
+                />
+              }
+              label="Complete"
+            />
+          </FormGroup>
+
+          <Button type="submit" variant="contained" color="primary">
+            Update Item
+            <SaveIcon />
+          </Button>
+
+          <Button
+            onClick={this.handleDeleteItem}
+            variant="contained"
+            color="primary"
+          >
+            Delete Item
+            <DeleteIcon />
+          </Button>
+        </form>
+      </Paper>
     );
   }
 }

@@ -9,15 +9,10 @@ const styles = {
   root: {
     width: "100%",
     display: "inline-flex",
-    backgroundColor: "#f50057",
-    color: "#fff",
     justifyContent: "space-evenly",
     position: "fixed",
     left: 0,
     bottom: 0
-  },
-  navItem: {
-    color: "#fff"
   }
 };
 
@@ -45,21 +40,15 @@ class Footer extends React.Component {
           component={Link}
           to="/"
           label="Items"
-          className={classes.navItem}
           style={{ color: "#fff" }}
         />
         <BottomNavigationAction
           component={Link}
           to="/completed"
           label="Completed Items"
-          className={classes.navItem}
-          style={{ color: "#fff", flexGrow: 2 }}
-        />
-        <BottomNavigationAction
-          label="Recipes"
-          className={classes.navItem}
           style={{ color: "#fff" }}
         />
+        <BottomNavigationAction label="Recipes" style={{ color: "#fff" }} />
       </BottomNavigation>
     );
   }

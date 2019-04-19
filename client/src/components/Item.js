@@ -2,23 +2,32 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Fab from "@material-ui/core/Fab";
+import EditIcon from "@material-ui/icons/Edit";
+import Tooltip from "@material-ui/core/Tooltip";
+
 import { toggleItemComplete } from "../actions/itemActions";
-import "./item.css";
 
 const Item = ({ item, toggleItemComplete }) => {
-  let classes = item.isComplete ? "complete" : null;
-
   return (
-    <div>
-      <h4 onClick={() => toggleItemComplete(item)} className={classes}>
+    <ListItem button>
+      <ListItemText onClick={() => toggleItemComplete(item)}>
         {item.name}
-      </h4>
-      <Link to={`/item/edit/${item._id}`}>
-        <span role="img" aria-label="Pencil">
-          ✏️
-        </span>
-      </Link>
-    </div>
+      </ListItemText>
+      <Tooltip title="Edit Item" placement="left">
+        <Fab
+          color="primary"
+          aria-label="Edit"
+          size="small"
+          component={Link}
+          to={`/item/edit/${item._id}`}
+        >
+          <EditIcon />
+        </Fab>
+      </Tooltip>
+    </ListItem>
   );
 };
 
