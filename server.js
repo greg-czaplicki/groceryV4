@@ -20,6 +20,13 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 
+//Gzip
+app.get("*.js", function(req, res, next) {
+  req.url = req.url + ".gz";
+  res.set("Content-Encoding", "gzip");
+  next();
+});
+
 // Routes
 app.use("/api/items", itemsRouter);
 app.use("/api/categories", categoriesRouter);
