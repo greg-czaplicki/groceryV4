@@ -3,6 +3,7 @@ const logger = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const itemsRouter = require("./routes/items");
 const categoriesRouter = require("./routes/categories");
@@ -35,6 +36,17 @@ app.use((err, req, res, next) => {
   });
   console.error(err);
 });
+
+// Server static assets if in PRODUCTION
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res, next) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+const port = process.env.PORT || 3001;
 
 // Start server
 app.listen(serverConfig.port, () => {
