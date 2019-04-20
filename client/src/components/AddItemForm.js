@@ -66,7 +66,11 @@ class AddItemForm extends Component {
           fullWidth
         >
           {this.props.categories.map(category => (
-            <MenuItem key={category._id} value={category._id}>
+            <MenuItem
+              key={category._id}
+              value={category._id}
+              style={{ fontSize: 20 }}
+            >
               {category.name}
             </MenuItem>
           ))}
