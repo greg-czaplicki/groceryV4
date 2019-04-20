@@ -5,6 +5,8 @@ import CompletedCategory from "./CompletedCategory";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 
+import containerStyles from "./styles/container";
+
 const CompletedCategoryContainer = ({ categories, isLoading, classes }) => {
   const renderCategories = () => {
     if (isLoading) return <h3>Loading...</h3>;
@@ -16,31 +18,18 @@ const CompletedCategoryContainer = ({ categories, isLoading, classes }) => {
 
   return (
     <div className={classes.main}>
-      <Typography variant="h4" align="center" className={classes.title}>
+      <Typography
+        variant="h4"
+        align="center"
+        className={classes.title}
+        style={{ paddingBottom: 20 }}
+      >
         Completed Items
       </Typography>
       {renderCategories()}
     </div>
   );
 };
-
-const styles = theme => ({
-  main: {
-    width: "auto",
-    display: "block", // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(960 + theme.spacing.unit * 3 * 2)]: {
-      width: 800,
-      marginLeft: "auto",
-      marginRight: "auto"
-    }
-  },
-  title: {
-    paddingTop: 20,
-    paddingBottom: 20
-  }
-});
 
 const mapStateToProps = state => {
   return {
@@ -50,5 +39,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(
-  withStyles(styles)(CompletedCategoryContainer)
+  withStyles(containerStyles)(CompletedCategoryContainer)
 );

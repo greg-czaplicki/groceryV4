@@ -7,6 +7,7 @@ import { fetchCategoryNames } from "./actions/categoryActions";
 import { fetchALLItems } from "./actions/itemActions";
 
 import withStyles from "@material-ui/core/styles/withStyles";
+import containerStyles from "./components/styles/container";
 
 class App extends Component {
   async componentDidMount() {
@@ -27,7 +28,6 @@ class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      //! REMOVE STYLE
       <div className={classes.main}>
         <AddItemForm categories={this.props.categories} />
         {this.renderCategories()}
@@ -43,21 +43,7 @@ const mapStateToProps = state => {
   };
 };
 
-const styles = theme => ({
-  main: {
-    width: "auto",
-    display: "block", // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(960 + theme.spacing.unit * 3 * 2)]: {
-      width: 800,
-      marginLeft: "auto",
-      marginRight: "auto"
-    }
-  }
-});
-
 export default connect(
   mapStateToProps,
   { fetchCategoryNames, fetchALLItems }
-)(withStyles(styles)(App));
+)(withStyles(containerStyles)(App));

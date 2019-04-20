@@ -52,6 +52,7 @@ class AddItemForm extends Component {
           fullWidth
           size="large"
           margin="normal"
+          variant="outlined"
         />
 
         <TextField
@@ -64,6 +65,7 @@ class AddItemForm extends Component {
           margin="normal"
           size="large"
           fullWidth
+          variant="outlined"
         >
           {this.props.categories.map(category => (
             <MenuItem

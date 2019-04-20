@@ -10,7 +10,6 @@ import Item from "./Item";
 
 const styles = theme => ({
   root: {
-    // ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     marginBottom: 20
   }
