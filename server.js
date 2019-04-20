@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
+const compression = require("compression");
 
 const itemsRouter = require("./routes/items");
 const categoriesRouter = require("./routes/categories");
@@ -19,13 +20,7 @@ app.use(helmet());
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
-
-//Gzip
-app.get("*.js", function(req, res, next) {
-  req.url = req.url + ".gz";
-  res.set("Content-Encoding", "gzip");
-  next();
-});
+app.use(compression());
 
 // Routes
 app.use("/api/items", itemsRouter);
