@@ -124,30 +124,37 @@ class EditItem extends Component {
                     checked={this.state.isComplete}
                     onChange={this.handleSliderChange("isComplete")}
                     value="isComplete"
+                    style={{ marginTop: 30, marginBottom: 30 }}
                   />
                 }
                 label="Complete"
               />
             </FormGroup>
 
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{ marginRight: 20, marginBottom: 30 }}
-            >
-              Update Item
-              <SaveIcon />
-            </Button>
+            <div>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth
+                style={{ marginTop: 30, marginBottom: 30 }}
+              >
+                Update Item
+                <SaveIcon />
+              </Button>
 
-            <Button
-              onClick={this.handleDeleteItem}
-              variant="contained"
-              style={{ marginRight: 20, marginBottom: 30 }}
-            >
-              Delete Item
-              <DeleteIcon />
-            </Button>
+              <Button
+                onClick={this.handleDeleteItem}
+                variant="contained"
+                size="large"
+                fullWidth
+                style={{ marginBottom: 30 }}
+              >
+                Delete Item
+                <DeleteIcon />
+              </Button>
+            </div>
           </form>
         </Paper>
       </div>
