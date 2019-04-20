@@ -54,6 +54,11 @@ const theme = createMuiTheme({
         fontSize: 20
       }
     },
+    MuiButtonBase: {
+      root: {
+        height: 50
+      }
+    },
     MuiBottomNavigation: {
       root: {
         backgroundColor: pink[500]
