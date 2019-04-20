@@ -12,7 +12,7 @@ import { toggleItemComplete } from "../actions/itemActions";
 
 const Item = ({ item, toggleItemComplete }) => {
   return (
-    <ListItem button>
+    <ListItem button style={{ height: 57 }}>
       <ListItemText onClick={() => toggleItemComplete(item)}>
         {item.name}
       </ListItemText>

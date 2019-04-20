@@ -36,7 +36,9 @@ const CategoryContent = ({ items, category, classes }) => {
           </Typography>
           <Divider />
 
-          <List style={{ paddingBottom: 0 }}>{renderItems()}</List>
+          <List style={{ paddingBottom: 0, paddingTop: 0 }}>
+            {renderItems()}
+          </List>
         </Paper>
       );
   };
