@@ -6,7 +6,7 @@ import AddItemForm from "./components/AddItemForm";
 import { fetchCategoryNames } from "./actions/categoryActions";
 import { fetchALLItems } from "./actions/itemActions";
 
-import Grid from "@material-ui/core/Grid";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 class App extends Component {
   async componentDidMount() {
@@ -25,21 +25,13 @@ class App extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       //! REMOVE STYLE
-      <Grid
-        container
-        spacing={16}
-        style={{
-          marginBottom: 60,
-          padding: 20
-        }}
-      >
-        <Grid item xs={12}>
-          <AddItemForm categories={this.props.categories} />
-          {this.renderCategories()}
-        </Grid>
-      </Grid>
+      <div className={classes.main}>
+        <AddItemForm categories={this.props.categories} />
+        {this.renderCategories()}
+      </div>
     );
   }
 }
@@ -51,7 +43,21 @@ const mapStateToProps = state => {
   };
 };
 
+const styles = theme => ({
+  main: {
+    width: "auto",
+    display: "block", // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(960 + theme.spacing.unit * 3 * 2)]: {
+      width: 800,
+      marginLeft: "auto",
+      marginRight: "auto"
+    }
+  }
+});
+
 export default connect(
   mapStateToProps,
   { fetchCategoryNames, fetchALLItems }
-)(App);
+)(withStyles(styles)(App));

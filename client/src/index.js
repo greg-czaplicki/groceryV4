@@ -10,9 +10,10 @@ import EditItem from "./components/EditItem";
 import CompletedCategoryContainer from "./components/CompletedCategoryContainer";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import RecipeContainer from "./components/RecipeContainer";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import pink from "@material-ui/core/colors/pink";
+import blue from "@material-ui/core/colors/blue";
 
 import "normalize.css";
 
@@ -21,15 +22,15 @@ const theme = createMuiTheme({
     useNextVariants: true
   },
   palette: {
-    primary: pink,
+    primary: blue,
     secondary: {
-      main: "#fff176"
+      main: blue[200]
     }
   },
   overrides: {
     MuiBottomNavigationAction: {
       label: {
-        color: "#ff9790",
+        color: "#D5D5D5",
         fontSize: 18,
         textAlign: "center",
 
@@ -61,7 +62,7 @@ const theme = createMuiTheme({
     },
     MuiBottomNavigation: {
       root: {
-        backgroundColor: pink[500]
+        backgroundColor: blue[500]
       }
     }
   }
@@ -84,6 +85,7 @@ ReactDOM.render(
           <Route path="/" exact component={App} />
           <Route path="/item/edit/:id" component={EditItem} />
           <Route path="/completed" component={CompletedCategoryContainer} />
+          <Route path="/recipes" component={RecipeContainer} />
           <Route component={notFound} />
         </Switch>
         <Footer />

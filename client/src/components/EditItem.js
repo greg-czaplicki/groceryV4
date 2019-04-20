@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -69,70 +70,87 @@ class EditItem extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <Paper>
-        <form onSubmit={this.handleEditItem} noValidate autoComplete="off">
-          <TextField
-            id="standard-name"
-            label="Name"
-            value={this.state.name}
-            onChange={this.handleChange("name")}
-            margin="normal"
-            autoFocus
-          />
-
-          <TextField
-            id="standard-select-category"
-            select
-            label="Select"
-            value={this.state.category}
-            onChange={this.handleChange("category")}
-            helperText="Please select a category"
-            margin="normal"
-          >
-            {this.props.categories.map(category => (
-              <MenuItem key={category._id} value={category._id}>
-                {category.name}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          <TextField
-            id="standard-quantity"
-            label="Quantity"
-            value={this.state.quantity}
-            onChange={this.handleChange("quantity")}
-            margin="normal"
-          />
-
-          <FormGroup row>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={this.state.isComplete}
-                  onChange={this.handleSliderChange("isComplete")}
-                  value="isComplete"
-                />
-              }
-              label="Complete"
+      <div className={classes.main}>
+        <Paper style={{ padding: 40 }}>
+          <form onSubmit={this.handleEditItem} noValidate autoComplete="off">
+            <TextField
+              id="standard-name"
+              label="Name"
+              value={this.state.name}
+              onChange={this.handleChange("name")}
+              margin="normal"
+              fullWidth
+              size="large"
             />
-          </FormGroup>
 
-          <Button type="submit" variant="contained" color="primary">
-            Update Item
-            <SaveIcon />
-          </Button>
+            <TextField
+              id="standard-select-category"
+              select
+              label="Select"
+              value={this.state.category}
+              onChange={this.handleChange("category")}
+              helperText="Please select a category"
+              margin="normal"
+              size="large"
+              fullWidth
+            >
+              {this.props.categories.map(category => (
+                <MenuItem
+                  key={category._id}
+                  value={category._id}
+                  style={{ fontSize: 20 }}
+                >
+                  {category.name}
+                </MenuItem>
+              ))}
+            </TextField>
 
-          <Button
-            onClick={this.handleDeleteItem}
-            variant="contained"
-            color="primary"
-          >
-            Delete Item
-            <DeleteIcon />
-          </Button>
-        </form>
-      </Paper>
+            <TextField
+              id="standard-quantity"
+              label="Quantity"
+              value={this.state.quantity}
+              onChange={this.handleChange("quantity")}
+              margin="normal"
+              size="large"
+              fullWidth
+            />
+
+            <FormGroup row>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={this.state.isComplete}
+                    onChange={this.handleSliderChange("isComplete")}
+                    value="isComplete"
+                  />
+                }
+                label="Complete"
+              />
+            </FormGroup>
+
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ marginRight: 20, marginBottom: 30 }}
+            >
+              Update Item
+              <SaveIcon />
+            </Button>
+
+            <Button
+              onClick={this.handleDeleteItem}
+              variant="contained"
+              style={{ marginRight: 20, marginBottom: 30 }}
+            >
+              Delete Item
+              <DeleteIcon />
+            </Button>
+          </form>
+        </Paper>
+      </div>
     );
   }
 }
@@ -144,7 +162,22 @@ const mapStateToProps = state => {
   };
 };
 
+const styles = theme => ({
+  main: {
+    width: "auto",
+    display: "block", // Fix IE 11 issue.
+    marginTop: 100,
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(960 + theme.spacing.unit * 3 * 2)]: {
+      width: 800,
+      marginLeft: "auto",
+      marginRight: "auto"
+    }
+  }
+});
+
 export default connect(
   mapStateToProps,
   { editItemInfo, fetchItemInfo, deleteItemFromList }
-)(EditItem);
+)(withStyles(styles)(EditItem));

@@ -1,25 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
-import CompletedCategory from "./CompletedCategory";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 
-const CompletedCategoryContainer = ({ categories, isLoading, classes }) => {
-  const renderCategories = () => {
-    if (isLoading) return <h3>Loading...</h3>;
-
-    return categories.map(category => (
-      <CompletedCategory category={category} key={category._id} />
-    ));
-  };
-
+const RecipeContainer = ({ classes }) => {
   return (
     <div className={classes.main}>
       <Typography variant="h4" align="center" className={classes.title}>
-        Completed Items
+        Coming Soon...
       </Typography>
-      {renderCategories()}
     </div>
   );
 };
@@ -42,13 +31,4 @@ const styles = theme => ({
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    categories: state.categories.payload,
-    isLoading: state.categories.isLoading
-  };
-};
-
-export default connect(mapStateToProps)(
-  withStyles(styles)(CompletedCategoryContainer)
-);
+export default withStyles(styles)(RecipeContainer);
