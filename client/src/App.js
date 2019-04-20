@@ -6,6 +6,8 @@ import AddItemForm from "./components/AddItemForm";
 import { fetchCategoryNames } from "./actions/categoryActions";
 import { fetchALLItems } from "./actions/itemActions";
 
+import Grid from "@material-ui/core/Grid";
+
 class App extends Component {
   async componentDidMount() {
     await this.props.fetchCategoryNames();
@@ -25,15 +27,19 @@ class App extends Component {
   render() {
     return (
       //! REMOVE STYLE
-      <div
+      <Grid
+        container
+        spacing={16}
         style={{
           marginBottom: 60,
           padding: 20
         }}
       >
-        <AddItemForm categories={this.props.categories} />
-        {this.renderCategories()}
-      </div>
+        <Grid item xs={12}>
+          <AddItemForm categories={this.props.categories} />
+          {this.renderCategories()}
+        </Grid>
+      </Grid>
     );
   }
 }

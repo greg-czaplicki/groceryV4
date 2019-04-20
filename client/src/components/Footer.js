@@ -9,7 +9,7 @@ const styles = {
   root: {
     width: "100%",
     display: "inline-flex",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     position: "fixed",
     left: 0,
     bottom: 0
@@ -48,7 +48,12 @@ class Footer extends React.Component {
           label="Completed Items"
           style={{ color: "#fff" }}
         />
-        <BottomNavigationAction label="Recipes" style={{ color: "#fff" }} />
+        <BottomNavigationAction
+          component={Link}
+          to="/recipes"
+          label="Recipes"
+          style={{ color: "#fff" }}
+        />
       </BottomNavigation>
     );
   }

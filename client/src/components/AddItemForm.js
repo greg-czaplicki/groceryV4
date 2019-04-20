@@ -50,6 +50,7 @@ class AddItemForm extends Component {
           value={this.state.name}
           onChange={this.handleChange("name")}
           fullWidth
+          size="large"
           margin="normal"
         />
 
@@ -61,6 +62,7 @@ class AddItemForm extends Component {
           onChange={this.handleChange("category")}
           helperText="Please select a category"
           margin="normal"
+          size="large"
           fullWidth
         >
           {this.props.categories.map(category => (
@@ -76,8 +78,9 @@ class AddItemForm extends Component {
           color="primary"
           disabled={!this.state.name.length || !this.state.category.length}
           fullWidth
+          size="large"
           //! Remove style
-          style={{ marginTop: 10, marginBottom: 20 }}
+          style={{ marginTop: 20, marginBottom: 30 }}
         >
           Add Item
         </Button>

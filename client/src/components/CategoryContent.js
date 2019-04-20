@@ -19,7 +19,12 @@ const styles = theme => ({
 const CategoryContent = ({ items, category, classes }) => {
   const renderItems = () => {
     if (!items) return <p>Loading...</p>;
-    return items.map(item => <Item item={item} key={item._id} />);
+    return items.map(item => (
+      <Fragment>
+        <Item item={item} key={item._id} />
+        <Divider />
+      </Fragment>
+    ));
   };
 
   const renderCategoryName = () => {
@@ -31,7 +36,7 @@ const CategoryContent = ({ items, category, classes }) => {
           </Typography>
           <Divider />
 
-          <List>{renderItems()}</List>
+          <List style={{ paddingBottom: 0 }}>{renderItems()}</List>
         </Paper>
       );
   };

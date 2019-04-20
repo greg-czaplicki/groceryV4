@@ -30,10 +30,12 @@ const theme = createMuiTheme({
     MuiBottomNavigationAction: {
       label: {
         color: "#ff9790",
-        fontSize: 12,
+        fontSize: 18,
+        textAlign: "center",
+
         "&$selected": {
           color: "#fff",
-          fontSize: 13
+          fontSize: 20
         }
       }
     },
