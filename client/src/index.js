@@ -44,6 +44,16 @@ const theme = createMuiTheme({
         fontSize: 20
       }
     },
+    MuiSelect: {
+      selectMenu: {
+        fontSize: 20
+      }
+    },
+    MuiInputBase: {
+      input: {
+        fontSize: 20
+      }
+    },
     MuiBottomNavigation: {
       root: {
         backgroundColor: pink[500]
