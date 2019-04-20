@@ -39,6 +39,11 @@ const theme = createMuiTheme({
         }
       }
     },
+    MuiInputLabel: {
+      formControl: {
+        fontSize: 20
+      }
+    },
     MuiBottomNavigation: {
       root: {
         backgroundColor: pink[500]
