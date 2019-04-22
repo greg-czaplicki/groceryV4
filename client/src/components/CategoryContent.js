@@ -19,8 +19,8 @@ const CategoryContent = ({ items, category, classes }) => {
   const renderItems = () => {
     if (!items) return <p>Loading...</p>;
     return items.map(item => (
-      <Fragment>
-        <Item item={item} key={item._id} />
+      <Fragment key={item._id}>
+        <Item item={item} className={classes.item} />
         <Divider />
       </Fragment>
     ));
