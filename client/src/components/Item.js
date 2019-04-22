@@ -26,7 +26,7 @@ const Item = ({ item, toggleItemComplete }) => {
     <Swipeable
       onValueChange={{
         x: x => {
-          if (x <= -200) toggleItemComplete(item);
+          if (x <= -180) toggleItemComplete(item);
         }
       }}
     >
