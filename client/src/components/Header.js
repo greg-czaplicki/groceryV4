@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import SideDrawer from "./SideDrawer";
+
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -10,7 +12,6 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const styles = {
   root: {
-    flexGrow: 1,
     marginBottom: 60
   },
   title: {
@@ -36,6 +37,7 @@ const Header = props => {
             Grocery List
           </Typography>
           <ShoppingCartIcon />
+          <SideDrawer />
         </Toolbar>
       </AppBar>
     </div>
