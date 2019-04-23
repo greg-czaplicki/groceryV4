@@ -14,7 +14,7 @@ const Item = ({ item, toggleItemComplete }) => {
   return (
     <ListItem button style={{ height: 57 }}>
       <ListItemText onClick={() => toggleItemComplete(item)}>
-        {item.name}
+        {item.name} {item.quantity > 1 ? <span>- {item.quantity}</span> : null}
       </ListItemText>
       <Tooltip title="Edit Item" placement="left">
         <Fab
