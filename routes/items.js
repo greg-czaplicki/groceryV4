@@ -12,6 +12,8 @@ router
   .get(itemsController.index)
   .post(itemsController.addItem);
 
+router.route("/delete-list").delete(itemsController.deleteAllItems);
+
 router.use("/:id", validateId(schemas.idSchema));
 router
   .route("/:id")

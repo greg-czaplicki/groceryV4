@@ -25,3 +25,7 @@ export const updateItemInfo = (id, item) => {
 export const deleteItem = id => {
   return axios.delete(`/api/items/${id}`);
 };
+
+export const deleteAllItems = () => {
+  return axios.delete(`/api/items/delete-list`);
+};

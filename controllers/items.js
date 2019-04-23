@@ -1,5 +1,6 @@
 const Item = require("../models/item");
 const Category = require("../models/category");
+const mongoose = require("mongoose");
 
 module.exports = {
   index: async (req, res, next) => {
@@ -38,6 +39,11 @@ module.exports = {
     const category = await Category.findById(result.category);
     category.items.pull(result);
     await category.save();
+    res.status(200).json(result);
+  },
+
+  deleteAllItems: async (req, res, next) => {
+    const result = await Item.deleteMany();
     res.status(200).json(result);
   }
 };

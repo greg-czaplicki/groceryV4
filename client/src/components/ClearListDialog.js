@@ -1,3 +1,5 @@
+import { connect } from "react-redux";
+
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -7,6 +9,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ListItemText from "@material-ui/core/ListItemText";
+
+import { deleteAllItemsFromList } from "../actions/itemActions";
 
 class ClearListDialog extends Component {
   state = {
@@ -19,8 +23,9 @@ class ClearListDialog extends Component {
     });
   };
 
-  handleOnSubmit = () => {
+  handleOnSubmit = async () => {
     if (this.state.password === "greg") {
+      await this.props.deleteAllItemsFromList();
       this.props.handleDialogClose();
     } else {
       alert("The password is incorrect. Please try again.");
@@ -71,4 +76,7 @@ class ClearListDialog extends Component {
   }
 }
 
-export default ClearListDialog;
+export default connect(
+  null,
+  { deleteAllItemsFromList }
+)(ClearListDialog);

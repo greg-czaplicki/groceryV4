@@ -16,7 +16,10 @@ import {
   EDIT_ITEM_FAILURE,
   DELETE_ITEM,
   DELETE_ITEM_SUCCESS,
-  DELETE_ITEM_FAILURE
+  DELETE_ITEM_FAILURE,
+  DELETE_ALL_ITEMS,
+  DELETE_ALL_ITEMS_SUCCESS,
+  DELETE_ALL_ITEMS_FAILURE
 } from "./types";
 import {
   addItem,
@@ -24,7 +27,8 @@ import {
   getAllItems,
   getItemInfo,
   updateItemInfo,
-  deleteItem
+  deleteItem,
+  deleteAllItems
 } from "../api/items";
 
 export const fetchALLItems = () => {
@@ -154,6 +158,27 @@ export const deleteItemFromList = id => {
     } catch (err) {
       dispatch({
         type: DELETE_ITEM_FAILURE,
+        error: err
+      });
+    }
+  };
+};
+
+export const deleteAllItemsFromList = () => {
+  return async dispatch => {
+    dispatch({
+      type: DELETE_ALL_ITEMS
+    });
+
+    try {
+      await deleteAllItems();
+
+      dispatch({
+        type: DELETE_ALL_ITEMS_SUCCESS
+      });
+    } catch (err) {
+      dispatch({
+        type: DELETE_ALL_ITEMS_FAILURE,
         error: err
       });
     }

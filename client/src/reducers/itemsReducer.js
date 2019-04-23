@@ -10,7 +10,10 @@ import {
   TOGGLE_ITEM_COMPLETE_FAILURE,
   FETCH_ITEM,
   FETCH_ITEM_SUCCESS,
-  FETCH_ITEM_FAILURE
+  FETCH_ITEM_FAILURE,
+  DELETE_ALL_ITEMS,
+  DELETE_ALL_ITEMS_FAILURE,
+  DELETE_ALL_ITEMS_SUCCESS
 } from "../actions/types";
 
 import produce from "immer";
@@ -89,6 +92,23 @@ const itemsReducer = (state = intialState, action) =>
         };
 
       case FETCH_ITEM_FAILURE:
+        return {
+          ...state,
+          error: action.error
+        };
+
+      case DELETE_ALL_ITEMS:
+        return {
+          ...state
+        };
+
+      case DELETE_ALL_ITEMS_SUCCESS:
+        return {
+          ...state,
+          payload: []
+        };
+
+      case DELETE_ALL_ITEMS_FAILURE:
         return {
           ...state,
           error: action.error
