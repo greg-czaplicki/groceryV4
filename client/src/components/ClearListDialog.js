@@ -53,7 +53,7 @@ class ClearListDialog extends Component {
               Please enter the password to clear the current grocery list.
             </DialogContentText>
             <TextField
-              autoFocus
+              // autoFocus
               margin="dense"
               id="password"
               label="Password"
