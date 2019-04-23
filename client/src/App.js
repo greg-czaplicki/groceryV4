@@ -8,6 +8,8 @@ import { fetchALLItems } from "./actions/itemActions";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import containerStyles from "./components/styles/container";
+import { SyncLoader } from "react-spinners";
+import { Typography } from "@material-ui/core";
 
 class App extends Component {
   async componentDidMount() {
@@ -18,7 +20,18 @@ class App extends Component {
   renderCategories() {
     const { categories, isLoading } = this.props;
 
-    if (isLoading) return <h3>Loading...</h3>;
+    if (isLoading)
+      return (
+        <span
+          id="loader"
+          style={{ textAlign: "center", display: "block", marginTop: 100 }}
+        >
+          <SyncLoader color={"#0081CB"} size={30} loading={isLoading} />
+          <Typography variant="subtitle1" style={{ paddingTop: 20 }}>
+            Loading...
+          </Typography>
+        </span>
+      );
 
     return categories.map(category => (
       <Category category={category} key={category._id} />
