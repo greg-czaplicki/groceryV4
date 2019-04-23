@@ -60,6 +60,11 @@ const theme = createMuiTheme({
         height: 50
       }
     },
+    MuiListItemText: {
+      primary: {
+        fontSize: "1.15rem"
+      }
+    },
     MuiBottomNavigation: {
       root: {
         backgroundColor: blue[500]
