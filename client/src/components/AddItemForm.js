@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 import { addItemToList } from "../actions/itemActions";
 
@@ -89,7 +90,8 @@ class AddItemForm extends Component {
           //! Remove style
           style={{ marginTop: 20, marginBottom: 30 }}
         >
-          Add Item
+          <span style={{ marginRight: 20 }}>Add Item</span>
+          <AddShoppingCartIcon />
         </Button>
       </form>
     );
