@@ -90,7 +90,7 @@ class AddItemForm extends Component {
           //! Remove style
           style={{ marginTop: 20, marginBottom: 30 }}
         >
-          <span style={{ marginRight: 20 }}>Add Item</span>
+          <span style={{ marginRight: 10 }}>Add Item</span>
           <AddShoppingCartIcon />
         </Button>
       </form>
