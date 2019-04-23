@@ -70,6 +70,11 @@ const theme = createMuiTheme({
         background: "#fff"
       }
     },
+    MuiModal: {
+      root: {
+        top: -200
+      }
+    },
     MuiBottomNavigation: {
       root: {
         backgroundColor: blue[500]
