@@ -46,9 +46,10 @@ class AddItemForm extends Component {
       >
         <TextField
           id="standard-name"
-          label="Name"
+          label="Item Name"
           value={this.state.name}
           onChange={this.handleChange("name")}
+          helperText="Please enter an item name..."
           fullWidth
           size="large"
           margin="normal"
@@ -58,10 +59,10 @@ class AddItemForm extends Component {
         <TextField
           id="standard-select-category"
           select
-          label="Select"
+          label="Item Category"
           value={this.state.category}
           onChange={this.handleChange("category")}
-          helperText="Please select a category"
+          helperText="Please select an item category..."
           margin="normal"
           size="large"
           fullWidth
