@@ -65,6 +65,11 @@ const theme = createMuiTheme({
         fontSize: "1.15rem"
       }
     },
+    MuiOutlinedInput: {
+      root: {
+        background: "#fff"
+      }
+    },
     MuiBottomNavigation: {
       root: {
         backgroundColor: blue[500]
