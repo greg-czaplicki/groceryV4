@@ -17,7 +17,7 @@ import ClearListDialog from "./ClearListDialog";
 
 const styles = {
   list: {
-    width: 250
+    width: 275
   }
 };
 
