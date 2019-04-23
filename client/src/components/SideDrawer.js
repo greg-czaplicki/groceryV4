@@ -9,24 +9,32 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Typography } from "@material-ui/core";
 
+import ClearListDialog from "./ClearListDialog";
+
 const styles = {
   list: {
     width: 250
-  },
-  fullList: {
-    width: "auto"
   }
 };
 
 class SideDrawer extends React.Component {
   state = {
-    right: false
+    right: false,
+    dialogOpen: false
   };
 
   toggleDrawer = open => () => {
     this.setState({
       right: open
     });
+  };
+
+  handleDialogOpen = () => {
+    this.setState({ dialogOpen: true });
+  };
+
+  handleDialogClose = () => {
+    this.setState({ dialogOpen: false });
   };
 
   render() {
@@ -47,7 +55,11 @@ class SideDrawer extends React.Component {
           </ListItem>
           <Divider />
           <ListItem button key={"Clear Grocery List"}>
-            <ListItemText primary={"Clear Grocery List"} />
+            <ClearListDialog
+              dialogOpen={this.state.dialogOpen}
+              handleDialogClose={this.handleDialogClose}
+              handleDialogOpen={this.handleDialogOpen}
+            />
           </ListItem>
           <Divider />
           <ListItem button key={"Clear Recipes"}>
@@ -63,7 +75,7 @@ class SideDrawer extends React.Component {
 
         <Drawer
           anchor="right"
-          open={this.state.right}
+          open={this.state.right || this.state.dialogOpen}
           onClose={this.toggleDrawer(false)}
         >
           <div
