@@ -13,7 +13,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
-import ClearListDialog from "./ClearListDialog";
+import ClearListDialog from "../ClearListDialog";
 
 const styles = {
   list: {

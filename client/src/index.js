@@ -7,10 +7,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store";
 import App from "./App";
 import EditItem from "./components/EditItem";
-import CompletedCategoryContainer from "./components/CompletedCategoryContainer";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import RecipeContainer from "./components/RecipeContainer";
+import CompletedCategoryContainer from "./components/containers/CompletedCategoryContainer";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import RecipeContainer from "./components/containers/RecipeContainer";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";

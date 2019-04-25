@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import CompletedCategory from "./CompletedCategory";
+import CompletedCategory from "../CompletedCategory";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 
-import containerStyles from "./styles/container";
+import containerStyles from "../styles/container";
 
 const CompletedCategoryContainer = ({ categories, isLoading, classes }) => {
   const renderCategories = () => {
