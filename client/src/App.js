@@ -6,11 +6,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import IncompleteContainer from "./components/containers/IncompleteContainer";
 import store from "./store";
 import EditItem from "./components/EditItem";
-import CompletedCategoryContainer from "./components/containers/CompletedCategoryContainer";
+import CompletedContainer from "./components/containers/CompletedContainer";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import RecipeContainer from "./components/containers/RecipeContainer";
 import NotFound from "./components/NotFound";
+import FetchData from "./components/FetchData";
 
 import myTheme from "./components/styles/theme";
 import { MuiThemeProvider } from "@material-ui/core";
@@ -21,12 +22,13 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={myTheme}>
         <Provider store={store}>
+          <FetchData />
           <Router>
             <Header />
             <Switch>
               <Route path="/" exact component={IncompleteContainer} />
               <Route path="/item/edit/:id" component={EditItem} />
-              <Route path="/completed" component={CompletedCategoryContainer} />
+              <Route path="/completed" component={CompletedContainer} />
               <Route path="/recipes" component={RecipeContainer} />
               <Route component={NotFound} />
             </Switch>

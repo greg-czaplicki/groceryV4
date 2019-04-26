@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import AddItemForm from "../AddItemForm";
 import IsLoading from "../IsLoading";
-import Category from "../Category";
+import Category from "../CompletedCategory";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import containerStyles from "../styles/container";
 
-class IncompleteContainer extends Component {
+class CompletedContainer extends Component {
   render() {
     const { categories, isLoading, classes } = this.props;
     return (
       <div className={classes.main}>
-        <AddItemForm categories={categories} />
         {isLoading ? (
           <IsLoading />
         ) : (
@@ -34,5 +32,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(
-  withStyles(containerStyles)(IncompleteContainer)
+  withStyles(containerStyles)(CompletedContainer)
 );
