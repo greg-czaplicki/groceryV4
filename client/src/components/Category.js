@@ -1,10 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import CategoryContent from "./CategoryContent";
-
 const Category = ({ items, category }) => {
-  return <CategoryContent items={items} category={category} />;
+  return <h1>{category.name}</h1>;
 };
 
 const mapStateToProps = (state, ownProps) => {

@@ -31,7 +31,7 @@ import {
   deleteAllItems
 } from "../api/items";
 
-export const fetchALLItems = () => {
+export const fetchAllItems = () => {
   return async dispatch => {
     // Initiate loading state
     dispatch({

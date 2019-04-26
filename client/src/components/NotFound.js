@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-class RecipeContainer extends Component {
+class NotFound extends Component {
   render() {
     return (
       <div>
-        <h1>Recipe Container</h1>
+        <h1>404 - Page Not Found...</h1>
       </div>
     );
   }
 }
 
-export default RecipeContainer;
+export default NotFound;
