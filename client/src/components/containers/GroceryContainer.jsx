@@ -3,23 +3,31 @@ import { connect } from "react-redux";
 
 import IsLoading from "../IsLoading";
 import Category from "../Category";
+import CompletedCategory from "../CompletedCategory"
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import containerStyles from "../styles/container";
 
 class GroceryContainer extends Component {
+
+  renderCategoryType = (typeOfCategory) => {
+    if (typeOfCategory === "Category") {
+      return this.props.categories.map(category => (
+        <Category category={category} key={category._id} />
+      ))
+    } else {
+      return this.props.categories.map(category => (
+        <CompletedCategory category={category} key={category._id} />
+      ))
+    }
+  }
+
   render() {
-    const { categories, isLoading, classes, children } = this.props;
+    const { categories, isLoading, classes, categoryType, children } = this.props;
     return (
       <div className={classes.main}>
         {(children) ? React.cloneElement(children, { categories: categories }) : null}
-        {isLoading ? (
-          <IsLoading />
-        ) : (
-          categories.map(category => (
-            <Category category={category} key={category._id} />
-          ))
-        )}
+        {isLoading ?  <IsLoading /> : this.renderCategoryType(categoryType)}
       </div>
     );
   }

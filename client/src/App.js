@@ -26,7 +26,7 @@ class App extends Component {
           <Router>
             <Header />
             <Switch>
-              <Route path="/" exact render={() => <GroceryContainer><AddItemForm/></GroceryContainer>}/>
+              <Route path="/" exact render={() => <GroceryContainer categoryType={"Category"}><AddItemForm/></GroceryContainer>}/>
               <Route path="/item/edit/:id" component={EditItem} />
               <Route path="/completed" component={GroceryContainer}/>
               <Route path="/recipes" component={RecipeContainer} />
