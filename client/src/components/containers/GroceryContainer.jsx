@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import IsLoading from "../IsLoading";
-import Category from "../CompletedCategory";
+import Category from "../Category";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import containerStyles from "../styles/container";
 
-class CompletedContainer extends Component {
+class GroceryContainer extends Component {
   render() {
-    const { categories, isLoading, classes } = this.props;
+    const { categories, isLoading, classes, children } = this.props;
     return (
       <div className={classes.main}>
+        {(children) ? React.cloneElement(children, { categories: categories }) : null}
         {isLoading ? (
           <IsLoading />
         ) : (
@@ -32,5 +33,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(
-  withStyles(containerStyles)(CompletedContainer)
+  withStyles(containerStyles)(GroceryContainer)
 );

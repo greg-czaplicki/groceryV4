@@ -3,10 +3,10 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import IncompleteContainer from "./components/containers/IncompleteContainer";
+import GroceryContainer from "./components/containers/GroceryContainer";
 import store from "./store";
 import EditItem from "./components/EditItem";
-import CompletedContainer from "./components/containers/CompletedContainer";
+import AddItemForm from "./components/AddItemForm"
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import RecipeContainer from "./components/containers/RecipeContainer";
@@ -26,9 +26,9 @@ class App extends Component {
           <Router>
             <Header />
             <Switch>
-              <Route path="/" exact component={IncompleteContainer} />
+              <Route path="/" exact render={() => <GroceryContainer><AddItemForm/></GroceryContainer>}/>
               <Route path="/item/edit/:id" component={EditItem} />
-              <Route path="/completed" component={CompletedContainer} />
+              <Route path="/completed" component={GroceryContainer}/>
               <Route path="/recipes" component={RecipeContainer} />
               <Route component={NotFound} />
             </Switch>
