@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
@@ -27,6 +28,7 @@ class ClearListDialog extends Component {
     if (this.state.password === "greg") {
       await this.props.deleteAllItemsFromList();
       this.props.handleDialogClose();
+      this.props.history.push("/");
     } else {
       alert("The password is incorrect. Please try again.");
     }
@@ -76,7 +78,7 @@ class ClearListDialog extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   null,
   { deleteAllItemsFromList }
-)(ClearListDialog);
+)(ClearListDialog));

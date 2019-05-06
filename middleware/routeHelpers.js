@@ -35,7 +35,7 @@ module.exports = {
     }),
     categorySchema: Joi.object().keys({
       name: Joi.string()
-        .regex(/^[A-Za-z]+$/)
+        .regex(/^[a-zA-Z0-9_]+( [/&a-zA-Z0-9_]+)*$/)
         .required()
     }),
     itemSchema: Joi.object().keys({
