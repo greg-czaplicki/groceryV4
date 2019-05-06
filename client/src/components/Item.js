@@ -18,8 +18,8 @@ const Item = ({ item, toggleItemComplete }) => {
   classes += (item.isComplete) ? "complete" : null;
 
   return (
-    <ListItem button style={{ height: 57 }} className={classes} onClick={() => toggleItemComplete(item)}>
-      <ListItemText >
+    <ListItem button style={{ height: 57 }} className={classes}>
+      <ListItemText onClick={() => toggleItemComplete(item)}>
         {item.name} {item.quantity > 1 ? <span>- {item.quantity}</span> : null}
       </ListItemText>
       <Tooltip title="Edit Item" placement="left">

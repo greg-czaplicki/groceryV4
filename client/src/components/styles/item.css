@@ -4,13 +4,6 @@
 
 .complete > div > span {
   color: rgb(155, 155, 155);
-}
-
-.complete:before {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  left: 2.5%;
-  border-bottom: 2px solid rgb(212, 212, 212);
-  width: 95%;
+  font-style: italic;
+  text-decoration: line-through;
 }
