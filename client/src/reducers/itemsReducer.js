@@ -13,7 +13,13 @@ import {
   FETCH_ITEM_FAILURE,
   DELETE_ALL_ITEMS,
   DELETE_ALL_ITEMS_FAILURE,
-  DELETE_ALL_ITEMS_SUCCESS
+  DELETE_ALL_ITEMS_SUCCESS,
+  DELETE_ITEM,
+  DELETE_ITEM_SUCCESS,
+  DELETE_ITEM_FAILURE,
+  EDIT_ITEM,
+  EDIT_ITEM_SUCCESS,
+  EDIT_ITEM_FAILURE,
 } from "../actions/types";
 
 import produce from "immer";
@@ -66,7 +72,7 @@ const itemsReducer = (state = intialState, action) =>
         };
 
       case TOGGLE_ITEM_COMPLETE_SUCCESS:
-        const itemIndex = state.payload.findIndex(
+        let itemIndex = state.payload.findIndex(
           item => item._id === action.payload._id
         );
 
@@ -92,6 +98,40 @@ const itemsReducer = (state = intialState, action) =>
         };
 
       case FETCH_ITEM_FAILURE:
+        return {
+          ...state,
+          error: action.error
+        };
+
+      case EDIT_ITEM:
+        return {
+          ...state
+        };
+
+      case EDIT_ITEM_SUCCESS:
+        itemIndex = state.payload.findIndex(
+          item => item._id === action.payload._id
+        );
+
+        draft.payload[itemIndex] = action.payload
+        break;
+
+      case EDIT_ITEM_FAILURE:
+        return {
+          ...state,
+          error: action.error
+        };
+
+      case DELETE_ITEM:
+        return {
+          ...state
+        };
+
+      case DELETE_ITEM_SUCCESS:
+        draft.payload = draft.payload.filter(item => item._id !== action.payload)
+        break;
+
+      case DELETE_ITEM_FAILURE:
         return {
           ...state,
           error: action.error

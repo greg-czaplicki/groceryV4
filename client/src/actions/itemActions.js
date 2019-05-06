@@ -129,10 +129,11 @@ export const editItemInfo = (id, item) => {
     });
 
     try {
-      await updateItemInfo(id, item);
+      const {data } = await updateItemInfo(id, item);
 
       dispatch({
-        type: EDIT_ITEM_SUCCESS
+        type: EDIT_ITEM_SUCCESS,
+        payload: data
       });
     } catch (err) {
       dispatch({
@@ -153,7 +154,8 @@ export const deleteItemFromList = id => {
       await deleteItem(id);
 
       dispatch({
-        type: DELETE_ITEM_SUCCESS
+        type: DELETE_ITEM_SUCCESS,
+        payload: id
       });
     } catch (err) {
       dispatch({
