@@ -12,7 +12,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const styles = {
   root: {
-    marginBottom: 50
+    marginBottom: 60
   },
   title: {
     textDecoration: "none",
