@@ -11,6 +11,7 @@ import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
 import Paper from "@material-ui/core/Paper";
+import Typography from '@material-ui/core/Typography';
 
 import containerStyles from "./styles/container";
 
@@ -76,6 +77,7 @@ class EditItem extends Component {
     return (
       <div className={classes.main}>
         <Paper style={{ padding: 40 }}>
+        <Typography variant="h5" align="center">Edit Item</Typography>
           <form onSubmit={this.handleEditItem} noValidate autoComplete="off">
             <TextField
               id="standard-name"
@@ -138,9 +140,8 @@ class EditItem extends Component {
                 type="submit"
                 variant="contained"
                 color="primary"
-                size="large"
-                fullWidth
-                style={{ marginTop: 30, marginBottom: 30 }}
+                size="small"
+                style={{ marginRight: 30 }}
               >
                 Update Item
                 <SaveIcon />
@@ -149,9 +150,8 @@ class EditItem extends Component {
               <Button
                 onClick={this.handleDeleteItem}
                 variant="contained"
-                size="large"
-                fullWidth
-                style={{ marginBottom: 30 }}
+                size="small"
+                // style={{ marginBottom: 30 }}
               >
                 Delete Item
                 <DeleteIcon />
