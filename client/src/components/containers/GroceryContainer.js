@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import FetchData from "../FetchData";
 import IsLoading from "../IsLoading";
 import Category from "../Category";
 import CompletedCategory from "../CompletedCategory"
@@ -26,6 +27,7 @@ class GroceryContainer extends Component {
     const { categories, isLoading, classes, categoryType, children } = this.props;
     return (
       <div className={classes.main}>
+        <FetchData />
         {(children) ? React.cloneElement(children, { categories: categories }) : null}
         {isLoading ?  <IsLoading /> : this.renderCategoryType(categoryType)}
       </div>
