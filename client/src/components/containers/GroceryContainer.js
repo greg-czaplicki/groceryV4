@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { fetchCategoryNames } from "../actions/categoryActions";
+import { fetchAllItems } from "../actions/itemActions";
 import IsLoading from "../IsLoading";
 import Category from "../Category";
 import CompletedCategory from "../CompletedCategory"
@@ -9,6 +11,11 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import containerStyles from "../styles/container";
 
 class GroceryContainer extends Component {
+
+  async componentDidMount() {
+    await this.props.fetchCategoryNames();
+    await this.props.fetchAllItems();
+  }
 
   renderCategoryType = (typeOfCategory) => {
     if (typeOfCategory === "Category") {
@@ -27,7 +34,7 @@ class GroceryContainer extends Component {
     return (
       <div className={classes.main}>
         {(children) ? React.cloneElement(children, { categories: categories }) : null}
-        {isLoading ?  <IsLoading /> : this.renderCategoryType(categoryType)}
+        {isLoading ? <IsLoading /> : this.renderCategoryType(categoryType)}
       </div>
     );
   }
@@ -40,6 +47,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, { fetchAllItems, fetchCategoryNames })(
   withStyles(containerStyles)(GroceryContainer)
 );
