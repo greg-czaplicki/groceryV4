@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchCategoryNames } from "../actions/categoryActions";
-import { fetchAllItems } from "../actions/itemActions";
+import { fetchCategoryNames } from "../../actions/categoryActions";
+import { fetchAllItems } from "../../actions/itemActions";
 import IsLoading from "../IsLoading";
 import Category from "../Category";
 import CompletedCategory from "../CompletedCategory"
